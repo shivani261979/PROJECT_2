@@ -9,94 +9,41 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<link rel="stylesheet" href="../public/stylesheets/signup.css">
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
   <title>GetMed | Home</title>
   
   <style>
     form.signup,
     form.login {
-      margin-top: 50px;
-    }
-    #UserActions{
-      position: relative;
-    }
-    #UserActions label{
-      font-size: 20px;
-    }
-    body {
-        font-family: 'Noto Sans SC', sans-serif;
-        /* background-color: rgba(255,255,255,0.1);
-        background-blend-mode: lighten; */
-        background-image: url(../public/images/medicine.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    .container{
-      width: 80%;
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: center;
-      background-color: rgba(255,255,255,0.7);
-      padding: 20px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 0 10px #aaa;
-      box-shadow: 0 0 10px #aaa;
-    }
-
-    .form{
-      font-size: xx-large;
-      font-style: normal;
-
-    }
-
-    .card-body{
-      margin-top: 30px;
-        margin: 30px 0px 30px 0px;
-        background-color: rgb(245, 245, 245);
-
-    }
-    .card-img{
-        border: solid 20px white;
-        height: 160px;
-    }
-
-    .navbar {
-margin: 10px 0;
+  margin-top: 50px;
 
 }
-.navbar-default {
-background-color: #fff;
-border-color: #fff;
-}
-.brand-name {
-font-family: 'Josefin Slab', serif;
-font-size: 47px;
-font-weight: bold;
-color: rgb(68, 68, 68);
-text-decoration: none;
-}
 
-.nav-container {
-padding-top: 8px;
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    /* background-color: rgba(255,255,255,0.1);
+    background-blend-mode: lighten; */
+    background-image: url(../public/images/medicine.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
-
-.navbar-custom {
-font-size: 20px;
-background-color: #FFF;
-
+.container{
+    width: 80%;
+    max-width: 800px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px #aaa;
+        box-shadow: 0 0 10px #aaa;
 }
 
   </style>
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <!-- <a class="navbar-brand" href="#">Ge/a> -->
-    <h2 class="navbar-brand brand-name">
-      <a href="signup.html">GetMed</a>
-    </h2>
+		<a class="navbar-brand" href="#">GetMed</a>
         <div class="btn-group dropleft">
             <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
             <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,46 +60,31 @@ background-color: #FFF;
   </nav>
   
   
-
-    <div class="row" style="text-align: center">
+  <div class="container">
+    <div class="row">
       <div class="col-md-6 col-md-offset-3">
-       <h1> Tell us what you want to do ?</h1>       
-      </div>
-  </div>
-
-        <div class="col-md-4">
-            <div class="card text-center mb-3 MyCard" onclick="location.href='existingOrder.html';" style="cursor: pointer;">
-                <div class="row no-gutters">
-                    <div class= "card-body">
-                        <img src="../public/images/existing.jpg" class="card-img" alt="...">
-                        <!-- <button onclick="location.href='existingOrder.html';"><h1>View Existing Order</h1></button> -->
-                        <h1>View Existing Order</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card text-center mb-3 MyCard" onclick="location.href='newOrder.html';" style="cursor: pointer;">
-              <div class="row no-gutters">
-                  <div class= "card-body">
-                      <img src="../public/images/scooter.jpg" class="card-img" alt="...">
-                      <h1>Place New Order</h1>
-                  </div>
-              </div>
+        <h2> My Home </h2>
+        
+        <form class="signup">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="email-input" placeholder="Email">
           </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password-input" placeholder="Password">
+          </div>
+          <div style="display: none" id="alert" class="alert alert-danger" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span> <span class="msg"></span>
+          </div>
+          <button type="submit" class="btn btn-default">Sign Up</button>
+        </form>
+        <br />
+        <p>Or log in <a href="/login">here</a></p>
       </div>
-
-      <div class="col-md-4">
-        <div class="card text-center mb-3 MyCard" id="BrowseCat" onclick="location.href='newOrder.html';" style="cursor: pointer;">
-            <div class="row no-gutters">
-                <div class= "card-body">
-                    <img src="../public/images/Categories.jpg" class="card-img" alt="...">
-                    <h1>Browse Categories</h1>
-                </div>
-            </div>
-        </div>
     </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/signup.js"></script>
