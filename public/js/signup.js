@@ -1,34 +1,71 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // Getting references to our form and input
   var signUpForm = $("form.signup");
-  var emailInput = $("input#email-input");
-  var passwordInput = $("input#password-input");
+  var emailInput = $("input#inputemails");
+  var passwordInput = $("input#inputPassword");
+  var firstNameInput = $("input#firstName");
+  var lastNameInput = $("input#lastName");
+  var streetInput = $("input#inputAddress");
+  var cityInput = $("input#inputCity");
+  var stateInput = $("input#inputState");
+  var zipInput = $("input#inputZip");
+  var phoneInput = $("input#inputPhone")
+  var creditInput = $("input#inputCredit");
 
   // When the signup button is clicked, we validate the email and password are not blank
-  signUpForm.on("submit", function(event) {
+  signUpForm.on("submit", function (event) {
     event.preventDefault();
+    alert("i m clicked from singup")
     var userData = {
       email: emailInput.val().trim(),
-      password: passwordInput.val().trim()
+      password: passwordInput.val().trim(),
+      fname: firstNameInput.val().trim(),
+      lname: lastNameInput.val().trim(),
+      street: streetInput.val().trim(),
+      city: cityInput.val().trim(),
+      state: stateInput.val().trim(),
+      zipcode: zipInput.val().trim(),
+      phone: phoneInput.val().trim(),
+      ccard: creditInput.val().trim(),
+
+
     };
 
     if (!userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password);
+    signUpUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.ccard);
     emailInput.val("");
     passwordInput.val("");
+    firstNameInput.val("");
+    lastNameInput.val("");
+    streetInput.val("");
+    cityInput.val("");
+    stateInput.val("");
+    zipInput.val("");
+    phoneInput.val("");
+    creditInput.val("");
+
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password) {
+  function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, credit) {
     $.post("/api/signup", {
       email: email,
-      password: password
+      password: password,
+      fname: firstName,
+      lname: lastName,
+      street: street,
+      city: city,
+      state: state,
+      zipcode: zip,
+      phone: phone,
+      ccard: credit
+
     })
-      .then(function(data) {
+      .then(function (data) {
         window.location.replace("/members");
         // If there's an error, handle it by throwing up a bootstrap alert
       })

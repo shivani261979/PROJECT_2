@@ -9,14 +9,14 @@
   "test": {
     "username": "root",
     "password": "rootpass",
-    "database": "database_test",
+    "database": "getmed_DB",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "rootpass",
-    "database": "database_production",
+    "database": "getmed_DB",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
