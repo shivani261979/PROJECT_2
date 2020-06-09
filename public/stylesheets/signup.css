@@ -1,0 +1,15 @@
+
+form.signup,
+form.login {
+margin-top: 50px;
+
+}
+
+body {
+font-family: 'Noto Sans SC', sans-serif;
+/* background-color: rgba(255,255,255,0.1);
+background-blend-mode: lighten; */
+background-image: url(../public/images/medicine.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+}
