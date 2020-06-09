@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="Description" content="Enter your description here" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+	<title>New Order</title>
+</head>
+
+<body>
+	<h1 class="display-5">Wellness at your door</h1>
+	<p class="lead mt-3">Search below for your health needs and we will GetMed for you</p>
+	<div class="input-group mt-5">
+		<input type="text" class="form-control col-md-8" placeholder="Type a product name" aria-label="Product name"
+			aria-describedby="button-addon2" id="user-input">
+		<div class="input-group-append mb-5">
+			<button class="btn btn-info" type="button" id="button-addon2">Search</button>
+		</div>
+	</div>
+	<div class="card" id="card1">
+		<div class="card-body" id="card-body1">
+		</div>
+	</div>
+	<div class="card" id="card2">
+		<div class="card-body" id="card-body2">
+		</div>
+	</div>
+	<div class="card" id="card3">
+		<div class="card-body" id="card-body3">
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+	<script>
+		// Search Categories
+		var medSearch = {
+			"async": true,
+			"crossDomain": true,
+			"url": "https://walgreens.p.rapidapi.com/categories/list",
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "walgreens.p.rapidapi.com",
+				"x-rapidapi-key": "07434bd009msh94bbe003962fff9p1a0a71jsn3fee731c31ab"
+			}
+		}
+
+		$.ajax(medSearch).then(function (response) {
+			console.log(response);
+			var medicineCat = response.TierIds[3].name;
+			var medicineId = response.TierIds[3].id;
+			var catButton1 = $("<button>");
+			catButton1.append(medicineCat);
+			$("#card1").append(catButton1);
+			var vitaminCat = response.TierIds[4].name;
+			var vitaminId = response.TierIds[4].id;
+			var catButton2 = $("<button>");
+			catButton2.append(vitaminCat);
+			$("#card2").append(catButton2);
+		});
+
+		// Search One
+		$("#button-addon2").on("click", function (event) {
+			event.preventDefault();
+			$("#card-body3").empty();
+
+			var searchInput = $("#user-input").val();
+			console.log(searchInput);
+			if (searchInput === "") {
+				console.log("input a field");
+				return;
+			} else {
+				var medSearch = {
+					"async": true,
+					"crossDomain": true,
+					"url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
+					// &id=359441
+					"method": "GET",
+					"headers": {
+						"x-rapidapi-host": "walgreens.p.rapidapi.com",
+						"x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
+					}
+				}
+
+				$.ajax(medSearch).then(function (response) {
+					console.log(response);
+					
+					for (var i = 0; i < response.products.length; i++) {
+						var proId = response.products[i].productInfo.prodId;
+						// console.log("Product Id : ", proId);
+						var proName = response.products[i].productInfo.productDisplayName;
+						console.log("Product Name : ", proName);
+
+						var proImglink = response.products[i].productInfo.imageUrl;
+
+						var proImg = "https:" + proImglink;
+						// console.log("Product Img : ", proImg);
+
+						var proPrice = response.products[i].productInfo.priceInfo.regularPriceHtml;
+						console.log("Product Price : ", proPrice);
+						
+						var newDiv = $("<div>");
+						var imgDiv = $("<img src=" + proImg + ">")
+
+						if (proPrice === undefined){
+							var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
+
+							newDiv.append(proName, imgDiv, proPriceMsg);
+							$("#card-body3").append(newDiv);
+							
+						} else {
+						var proPriceFinal = $("<div>Item Price: " + proPrice + "</div>");
+						
+						var buyBtn = $('<button class="btn btn-warning" type="button" id="buy' + proId[i] + '">Buy</button>');
+						var quantity =  $('<form><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+						newDiv.append(proName, imgDiv, proPriceFinal, quantity, buyBtn);
+						$("#card-body3").append(newDiv);
+						};
+					}
+				});
+			}
+		});
+
+	</script>
+
+</body>
+
+</html>
