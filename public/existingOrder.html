@@ -18,7 +18,7 @@
             background-size: cover;
             background-repeat: no-repeat;
     }
-    #formOne {
+    form{
       background-color: rgba(245, 245, 245, 0.7);
       margin: auto;
       position: realtive;
@@ -83,7 +83,7 @@
             </div>
           </div>
   </nav>
-    <form method="post" action="/checkExistingOrder" id="formOne">
+    <form method="post" action="/checkExistingOrder">
         <h1>
           <bold> My Orders</bold>
         </h1>
@@ -94,27 +94,7 @@
         <!-- <div class="panel-footer"> -->
         <button id="back" onclick=" return goBack();">Back</button>
         <button id="close" >submit</button>
-	</form>
-	<p class="lead mt-3">Search below for your health needs and we will GetMed for you</p>
-	<div class="input-group mt-5">
-		<input type="text" class="form-control col-md-8" placeholder="Type a product name" aria-label="Product name"
-			aria-describedby="button-addon2" id="user-input">
-		<div class="input-group-append mb-5">
-			<button class="btn btn-info" type="button" id="button-addon2">Search</button>
-		</div>
-	</div>
-	<!-- <div class="card" id="card1">
-		<div class="card-body" id="card-body1">
-		</div>
-	</div>
-	<div class="card" id="card2">
-		<div class="card-body" id="card-body2">
-		</div>
-	</div> -->
-	<div class="card" id="card3">
-		<div class="card-body" id="card-body3">
-		</div>
-	</div>
+    </form>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/signup.js"></script>
     <script>
@@ -129,68 +109,7 @@
         function goBack(){
           window.history.back();
           return false;
-		}
-		$("#button-addon2").on("click", function (event) {
-			event.preventDefault();
-			$("#card-body3").empty();
-
-			var searchInput = $("#user-input").val();
-			console.log(searchInput);
-			if (searchInput === "") {
-				console.log("input a field");
-				return;
-			} else {
-				var medSearch = {
-					"async": true,
-					"crossDomain": true,
-					"url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
-					// &id=359441
-					"method": "GET",
-					"headers": {
-						"x-rapidapi-host": "walgreens.p.rapidapi.com",
-						"x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
-					}
-				}
-
-				$.ajax(medSearch).then(function (response) {
-					console.log(response);
-					
-					for (var i = 0; i < response.products.length; i++) {
-						var proId = response.products[i].productInfo.prodId;
-						// console.log("Product Id : ", proId);
-						var proName = response.products[i].productInfo.productDisplayName;
-						console.log("Product Name : ", proName);
-
-						var proImglink = response.products[i].productInfo.imageUrl;
-
-						var proImg = "https:" + proImglink;
-						// console.log("Product Img : ", proImg);
-
-						var proPrice = response.products[i].productInfo.priceInfo.regularPriceHtml;
-						console.log("Product Price : ", proPrice);
-						
-						var newDiv = $("<div>");
-						var imgDiv = $("<img src=" + proImg + ">")
-
-						if (proPrice === undefined){
-							var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
-
-							newDiv.append(proName, imgDiv, proPriceMsg);
-							$("#card-body3").append(newDiv);
-							
-						} else {
-						var proPriceFinal = $("<div>Item Price: " + proPrice + "</div>");
-						
-						var buyBtn = $('<button class="btn btn-warning" type="button" id="buy' + proId[i] + '">Buy</button>');
-						var quantity =  $('<form><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
-						newDiv.append(proName, imgDiv, proPriceFinal, quantity, buyBtn);
-						$("#card-body3").append(newDiv);
-						};
-					}
-				});
-			}
-		});
-
+        }
     </script>
 </body>
 </html>
