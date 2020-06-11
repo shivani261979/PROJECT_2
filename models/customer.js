@@ -39,19 +39,10 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 // isCreditCard: true,
             }
-        }
-        // phid: {
-        //     type: DataTypes.STRING,
-        //     // references: {
-        //     //     model: Pharmacy,
-        //     //     key: 'id'
-        //     // }
-        // },
-    //     phaccount: DataTypes.STRING,
-    // }, {
-    //     // createdAt: false,
-    //     // updatedAt: false,
-    //     // freezeTableName: true,
+        }},{
+ 
+      
+    //  freezeTableName: true
      });
     // Creating a custom method for our Customer model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
     Customer.prototype.validPassword = function (password) {
@@ -61,13 +52,16 @@ module.exports = function (sequelize, DataTypes) {
     Customer.addHook("beforeCreate", function (user) {
         user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
     });
-    // Customer.associate = function (models) {
-    //     Customer.belongsTo(models.Pharmacy, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     });
-    // };
+     Customer.associate = function (models) {
+        Customer.belongsTo(models.Pharmacy, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        Customer.hasMany(models.Order,{
+            onDelete: "cascade"
+        });
+    };
     // Customer.id = function (models) {
     //     Customer.hasMany(models.Order, {});
     // };
