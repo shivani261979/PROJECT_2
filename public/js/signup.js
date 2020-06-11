@@ -9,8 +9,9 @@ $(document).ready(function () {
   var cityInput = $("input#inputCity");
   var stateInput = $("input#inputState");
   var zipInput = $("input#inputZip");
-  var phoneInput = $("input#inputPhone")
+  var phoneInput = $("input#inputPhone");
   var creditInput = $("input#inputCredit");
+  var pharmaIdInput=$("input#inputPharma");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
@@ -27,6 +28,7 @@ $(document).ready(function () {
       zipcode: zipInput.val().trim(),
       phone: phoneInput.val().trim(),
       ccard: creditInput.val().trim(),
+      PharmacyId: pharmaIdInput.val().trim()
 
 
     };
@@ -35,7 +37,7 @@ $(document).ready(function () {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.ccard);
+    signUpUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.ccard, userData.PharmacyId);
     emailInput.val("");
     passwordInput.val("");
     firstNameInput.val("");
@@ -46,12 +48,13 @@ $(document).ready(function () {
     zipInput.val("");
     phoneInput.val("");
     creditInput.val("");
+    pharmaIdInput.val("");
 
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, credit) {
+  function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, credit, PharmacyId) {
     $.post("/api/signup", {
       email: email,
       password: password,
@@ -62,11 +65,12 @@ $(document).ready(function () {
       state: state,
       zipcode: zip,
       phone: phone,
-      ccard: credit
+      ccard: credit,
+      PharmacyId: PharmacyId
 
     })
       .then(function (data) {
-        window.location.replace("/members");
+        window.location.replace("/order");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
