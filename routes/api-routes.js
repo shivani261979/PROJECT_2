@@ -91,6 +91,35 @@ module.exports = function (app) {
       res.send(dbPharma);
     });
   });
+
+  // Shivani's code - used by orderstatus.html
+  app.get("/api/order/getstatus",function(req,res){
+
+    console.log("in api/order/getstatus - req.url holds - ", req.url);
+    console.log("orderId - " + parseInt(req.query.orderId));
+
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // console.log("i m in post route");
+      db.Order.findOne({
+        where:{
+          id: parseInt(req.query.orderId)
+        }
+        // include:[db.Customer]
+      }).then(function(dbOrder){
+        console.log("dbORder holds- " , dbOrder);
+        // console.log(dbOrder.user);
+        res.json(dbOrder);
+      });
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+    }
+  });
+
+
+
   //Route for getting data
   app.get("/api/order/:customer_id", function (req, res) {
     // console.log(req.body);
