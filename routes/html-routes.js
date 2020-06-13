@@ -41,7 +41,6 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/existingorder.html"));
   });
 
-<<<<<<< HEAD
     // Shivani's code - for serving orderstatus.html
   app.get("/orderStatus", isAuthenticated , function(req, res) {
     // If the user already has an account send them to the members page
@@ -60,14 +59,11 @@ module.exports = function (app) {
   // app.get("/members", isAuthenticated, function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/members.html"));
   // });
-=======
+
   app.get("/signupdriver", function (req, res) {
     if (req.user) {
       res.redirect("/");
     }
     res.sendFile(path.join(__dirname, "../public/signupdriver.html"));
   });
-
->>>>>>> 8903bb647ed61f331a49a32ba33392c12ee47839
-
 };
