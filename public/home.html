@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 ​
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,34 +20,49 @@
 		-webkit-animation: glow 1s ease-in-out infinite alternate;
 		-moz-animation: glow 1s ease-in-out infinite alternate;
 		animation: glow 1s ease-in-out infinite alternate;
-	  }
-	  
-	  @-webkit-keyframes glow {
-		from {
-		  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-		}
-		
-		to {
-		  text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-		}
-	  }
+	}
+
+		/* @-webkit-keyframes glow {
+			from {
+				text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+			}
+
+			to {
+				text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+			}
+		} */
 	</style>
 </head>
 ​
+
 <body>
 	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-		<a class="navbar-brand" class = "glow" href="#">GetMed</a>
+		<a class="navbar-brand" href="#">GetMed</a>
 		<div class="btn-group dropleft">
-			<input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
 			<button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">
-				Menu
+				Menu - Customer
 			</button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenu">
-				<button class="dropdown-item" type="button">Home</button>
+				<button class="dropdown-item" type="button"><a href="/">Customer</a></button>
 				<button class="dropdown-item" type="button"><a href="/signup">Sign Up</a></button>
 				<button class="dropdown-item" type="button"><a href="/login">Login</a></button>
-				<button class="dropdown-item" type="button">Order</button>
+				<button class="dropdown-item" type="button"><a href="/order">Order</a></button>
+				<button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
+				<button class="dropdown-item" type="button">Contact Us</button>
+			</div>
+		</div>
+		<div class="btn-group dropleft">
+			<button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+				aria-haspopup="true" aria-expanded="false">
+				Menu - Driver
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenu">
+				<button class="dropdown-item" type="button"><a href="/">Customer</a></button>
+				<button class="dropdown-item" type="button"><a href="/signupdriver">Sign Up</a></button>
+				<button class="dropdown-item" type="button"><a href="/logindriver">Login</a></button>
+				<button class="dropdown-item" type="button"><a href="/order">Order</a></button>
+				<button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
 				<button class="dropdown-item" type="button">Contact Us</button>
 			</div>
 		</div>
@@ -212,78 +228,77 @@
 			</div>
 		</div>
 	</footer>
-	
-	​<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 
-	<script>
+		<script>
 
-      $("#button-addon2").on("click", function (event) {
-        event.preventDefault();
-        $("#card-body3").empty();
+			$("#button-addon2").on("click", function (event) {
+				event.preventDefault();
+				$("#card-body3").empty();
 
-        var searchInput = $("#user-input").val();
-        console.log(searchInput);
-        if (searchInput === "") {
-        console.log("input a field");
-        return;
-        } else {
-        var medSearch = {
-            "async": true,
-            "crossDomain": true,
-            "url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
-            // &id=359441
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "walgreens.p.rapidapi.com",
-              "x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
-            }
-          }
-  
-          $.ajax(medSearch).then(function (response) {
-            console.log(response);
-      
-            for (var i = 0; i < response.products.length; i++) {
-              var proId = response.products[i].productInfo.prodId;
-              // console.log("Product Id : ", proId);
-              var proName = response.products[i].productInfo.productDisplayName;
-              console.log("Product Name : ", proName);
-  
-              var proImglink = response.products[i].productInfo.imageUrl;
-  
-              var proImg = "https:" + proImglink;
-              // console.log("Product Img : ", proImg);
-  
-              var proPrice = response.products[i].productInfo.priceInfo.regularPriceHtml;
-              console.log("Product Price : ", proPrice);
-              
-              var newDiv = $("<div>");
-              var imgDiv = $("<img src=" + proImg + ">")
-  
-              if (proPrice === undefined){
-                var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
-  
-                newDiv.append(proName, imgDiv, proPriceMsg);
-                $("#card-body3").append(newDiv);
-                
-              } else {
-              var proPriceFinal = $("<div>Item Price: " + proPrice + "</div>");
-              
-              var buyBtn = $('<button class="btn btn-warning" type="button" id="buy' + proId[i] + '">Buy</button>');
-              var quantity =  $('<form><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
-              newDiv.append(proName, imgDiv, proPriceFinal, quantity, buyBtn);
-              $("#card-body3").append(newDiv);
-              };
-            }
-          });
-        }
-      });
+				var searchInput = $("#user-input").val();
+				console.log(searchInput);
+				if (searchInput === "") {
+					console.log("input a field");
+					return;
+				} else {
+					var medSearch = {
+						"async": true,
+						"crossDomain": true,
+						"url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
+						// &id=359441
+						"method": "GET",
+						"headers": {
+							"x-rapidapi-host": "walgreens.p.rapidapi.com",
+							"x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
+						}
+					}
+
+					$.ajax(medSearch).then(function (response) {
+						console.log(response);
+
+						for (var i = 0; i < response.products.length; i++) {
+							var proId = response.products[i].productInfo.prodId;
+							// console.log("Product Id : ", proId);
+							var proName = response.products[i].productInfo.productDisplayName;
+							console.log("Product Name : ", proName);
+
+							var proImglink = response.products[i].productInfo.imageUrl;
+
+							var proImg = "https:" + proImglink;
+							// console.log("Product Img : ", proImg);
+
+							var proPrice = response.products[i].productInfo.priceInfo.regularPriceHtml;
+							console.log("Product Price : ", proPrice);
+
+							var newDiv = $("<div>");
+							var imgDiv = $("<img src=" + proImg + ">")
+
+							if (proPrice === undefined) {
+								var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
+
+								newDiv.append(proName, imgDiv, proPriceMsg);
+								$("#card-body3").append(newDiv);
+
+							} else {
+								var proPriceFinal = $("<div>Item Price: " + proPrice + "</div>");
+
+								var buyBtn = $('<button class="btn btn-warning" type="button" id="buy' + proId[i] + '">Buy</button>');
+								var quantity = $('<form><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+								newDiv.append(proName, imgDiv, proPriceFinal, quantity, buyBtn);
+								$("#card-body3").append(newDiv);
+							};
+						}
+					});
+				}
+			});
 
 
-	</script>
+		</script>
 
 </body>
 ​
