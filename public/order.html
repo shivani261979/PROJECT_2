@@ -1,154 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+​
 
 <head>
-  <title>My Home</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="Description" content="Enter your description here" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-	<link rel="stylesheet" href="../public/signup.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <title>GetMed | Home</title>
-  
-  <style>
-    form.signup,
-    form.login {
-      margin-top: 50px;
-    }
-    #UserActions{
-      position: relative;
-    }
-    #UserActions label{
-      font-size: 20px;
-    }
-    body {
-        font-family: 'Noto Sans SC', sans-serif;
-        /* background-color: rgba(255,255,255,0.1);
-        background-blend-mode: lighten; */
-        background-image: url(../images/medicine.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    /* .container{
-      width: 80%;
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: center;
-      background-color: rgba(255,255,255,0.7);
-      padding: 20px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 0 10px #aaa;
-      box-shadow: 0 0 10px #aaa;
-    } */
-
-    /* .form{
-      font-size: xx-large;
-      font-style: normal;
-
-    } */
-
-    .card-body{
-      margin-top: 50px;
-        margin: 30px 0px 30px 0px;
-        background-color: rgb(245, 245, 245);
-
-    }
-    .card-img{
-        border: solid 20px white;
-        height: 160px;
-    }
-
-    .navbar {
-margin: 10px 0;
-
-}
-.navbar-default {
-background-color: #fff;
-border-color: #fff;
-}
-.brand-name {
-font-family: 'Josefin Slab', serif;
-font-size: 40px;
-font-weight: bold;
-color: rgb(68, 68, 68);
-text-decoration: none;
-}
-
-.nav-container {
-padding-top: 8px;
-}
-
-.navbar-custom {
-font-size: 20px;
-background-color: #FFF;
-
-}
-
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="../public/stylesheets/style.css">
+  <title>GetMed | Order</title>
 </head>
+​
 
 <body>
-
-
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <!-- <a class="navbar-brand" href="#">Ge/a> -->
-    <h2 class="navbar-brand brand-name">
-      <a href="home.html">GetMed</a>
-    </h2>
-        <div class="btn-group dropleft">
-            <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
-            <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Menu
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-              <button class="dropdown-item" type="button" onclick="location.href='home.html'">Home</button>
-              <button class="dropdown-item" type="button">Sign In</button>
-              <button class="dropdown-item" type="button">Features</button>
-              <button class="dropdown-item" type="button">Pricing</button>
-              <button class="dropdown-item" type="button">Contact Us</button>
-            </div>
-          </div>
-  </nav>
-  
-  
-
-    <div class="row" style="text-align: center">
-      <div class="col-md-6 col-md-offset-3">
-        <h1> Tell us what you want to do ?</h1>       
+    <a class="navbar-brand" href="#">GetMed</a>
+    <div class="btn-group dropleft">
+      <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
+      <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Menu
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+        <button class="dropdown-item" type="button"><a href="/">Home</a></button>
+        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
+        <button class="dropdown-item" type="button"><a href="/login">Login</a></button>
+        <button class="dropdown-item" type="button"><a href="/order">Order</a></button>
+        <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
+        <button class="dropdown-item" type="button">Contact Us</button>
       </div>
+    </div>
+  </nav>
+
+
+
+  <div class="row" style="text-align: center">
+    <div class="col-md-6 col-md-offset-3">
+      <h1> Tell us what you want to do ?</h1>
+    </div>
   </div>
 
       <div class="row justify-content-center">
-        <div class="col-8">
-          <div class="col-md-6"> 
+        <div class="col-12">
+          <div class="col-md-4"> 
               <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
                   <div class="row no-gutters">
                       <div class= "card-body">
-                          <a href="/existingOrder"><img src="../images/existing.jpg" class="card-img" alt="..."></a>
+                          <a href="/existingOrder"><img src="../images/existing.jpg"  class="card-img" alt="..."></a>
                           <!-- <button onclick="location.href='existingOrder.html';"><h1>View Existing Order</h1></button> -->
                           <h1>View Existing Order</h1>
                       </div>
                   </div>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card text-center mb-3 MyCard" onclick="location.href='neworder.html';" style="cursor: pointer;">
                 <div class="row no-gutters">
-                    <div class= "card-body">
+                    <div class= "card-body"></div>
                         <img src="../images/scooter.jpg" class="card-img" alt="...">
                         <h1>Place New Order</h1>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+              <div class="card text-center mb-3 MyCard" onclick="location.href='orderstatus.html?orderId=8';" style="cursor: pointer; ">
+                  <div class="row no-gutters">
+                      <div class= "card-body"></div>
+                          <img src="" class="card-img" alt="...">
+                          <div style="position:absolute; top: 80px;margin:auto;font-size: 16px; text-align: center;">
+                            <input type="text" id="orderId" name="orderId" placeholder="Enter Order Id">
+                          </div>
+                          <h1>Track Order Id</h1>
+                      </div>
+                  </div>
+              </div>
+          </div>    
         </div>
+
       </div>
     </div>
+  </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/si"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 </body>
 

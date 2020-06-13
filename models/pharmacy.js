@@ -15,18 +15,17 @@ module.exports = function (sequelize, DataTypes) {
         zipcode: DataTypes.STRING,
         phone: DataTypes.STRING,
     }, {
-       
         // freezeTableName: true,
     });
     Pharmacy.associate = function (models) {
         Pharmacy.hasMany(models.Customer, {
             onDelete: "cascade"
 
-    });
-    Pharmacy.hasMany(models.Order, {
-        onDelete: "cascade"
-    });
-  
+        });
+        Pharmacy.hasMany(models.Order, {
+            onDelete: "cascade"
+        });
+
     };
     return Pharmacy;
 };

@@ -1,68 +1,67 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    console.log("i m from existingorder.js");
+    $.get("/api/order").then(function (orderData) {
+        console.log(orderData);
+        // var newId=orderData;
+        $.get(`/api/order/${orderData.id}`, function (myOrder) {
+            console.log(myOrder);
+            for (var i = 0; i < 5; i++) {
+                var customerid = myOrder[i].CustomerId;
+                var category = myOrder[i].category;
+                var createdat = myOrder[i].createdAt;
+                var medid = myOrder[i].med_id;
+                var price = myOrder[i].med_price;
+                var quantity = myOrder[i].quantity;
+                var status = myOrder[i].status;
+                var updatedat = myOrder[i].updatedAt;
 
-console.log("i m from existingorder.js");
-$.get("/api/order").then(function(orderData){
-    console.log(orderData);
-    // var newId=orderData;
-    $.get(`/api/order/${orderData.id}`,function(myOrder){
-        console.log(myOrder);
+                console.log(customerid, "this is the loop id number - ", i);
+                // console.log(medid, "this is the cusotmer id for checking")
+                //var newDiv = $("<div>");
 
+                // newDiv.append(customerid, category, createdat, medid, price, quantity, status, updatedat);
+
+                // $("#order").append(newDiv);
+
+                var orders = $(".orderclass");
+                orders.append(
+                    "<div class=divclass id=order>" +
+                    "<p>" +
+                    "Customer Id: " +
+                    customerid +
+                    "</P>" +
+                    "<p>" +
+                    "Category: " +
+                    category +
+                    "</p>" +
+                    "<p>" +
+                    "Medicine Id: " +
+                    medid +
+                    "</p>" +
+                    "<p>" +
+                    "Price: " +
+                    price +
+                    "<br>" +
+                    "</p>" +
+                    "Quantity: " +
+                    quantity +
+                    "<br>" +
+                    "<p>" +
+                    "Status: " +
+                    status +
+                    "<br>" +
+                    "<p>" +
+                    "Order ccreated at: " +
+                    createdat +
+                    "<br>" +
+                    "</p>" +
+                    "Order uodated at: " +
+                    updatedat +
+                    "<br>" +
+                    "</p>" +
+                    "</div>"
+                );
+            }
+        });
     });
-});
-// function myOrder(){
-//     $.get("/api/order/")
-// }
-
-// $.get("/api/order").then(function(orderData){
-//     console.log(orderData);
-// });
-// var url = window.location.search;
-// console.log(url);
-//   var CustomerId;
-//   if (url.indexOf("?customer_id=") !== -1) {
-//     CustomerId = url.split("=")[1];
-//     getPosts(CustomerId);
-//   }
-//   // If there's no authorId we just get all posts as usual
-//   else {
-//     getPosts();
-//   }
-
-
-//   // This function grabs posts from the database and updates the view
-//   function getPosts(Customer) {
-//     CustomerId = Customer || "";
-//     if (CustomerId) {
-//         CustomerId = "/?customer_id=" + CustomerId;
-//     }
-//     $.get("/api/order" + CustomerId, function(data) {
-//       console.log("order", data);
-//       console.log("customerId", CustomerId);
-//       order = data;
-//       if (!order || !order.length) {
-//         // displayEmpty(Customer);
-//       }
-//       else {
-//         //initializeRows();
-//       }
-//     });
-//   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

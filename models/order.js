@@ -22,7 +22,6 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             value: ['order placed', 'driver assigned', 'picked up', 'on the way', 'delivered']
         },
-       
         // CustomerID: DataTypes.INTEGER,
         // DriverID: DataTypes.INTEGER,
         // PharmacyID: DataTypes.STRING,
