@@ -11,7 +11,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         street: DataTypes.STRING,
         city: DataTypes.STRING,
-        state_abbr: DataTypes.STRING,
+        state: DataTypes.STRING,
         zipcode: DataTypes.STRING,
         phone: DataTypes.STRING,
     }, {
