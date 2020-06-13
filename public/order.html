@@ -121,8 +121,8 @@ background-color: #FFF;
   </div>
 
       <div class="row justify-content-center">
-        <div class="col-8">
-          <div class="col-md-6"> 
+        <div class="col-12">
+          <div class="col-md-4"> 
               <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
                   <div class="row no-gutters">
                       <div class= "card-body">
@@ -133,17 +133,30 @@ background-color: #FFF;
                   </div>
               </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card text-center mb-3 MyCard" onclick="location.href='neworder.html';" style="cursor: pointer;">
                 <div class="row no-gutters">
                     <div class= "card-body"></div>
                         <img src="../images/scooter.jpg" class="card-img" alt="...">
-                        <a href="/neworder"><img src="../public/neworder.html" class="card-img" alt="..."></a>
                         <h1>Place New Order</h1>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+              <div class="card text-center mb-3 MyCard" onclick="location.href='orderstatus.html?orderId=8';" style="cursor: pointer; ">
+                  <div class="row no-gutters">
+                      <div class= "card-body"></div>
+                          <img src="" class="card-img" alt="...">
+                          <div style="position:absolute; top: 80px;margin:auto;font-size: 16px; text-align: center;">
+                            <input type="text" id="orderId" name="orderId" placeholder="Enter Order Id">
+                          </div>
+                          <h1>Track Order Id</h1>
+                      </div>
+                  </div>
+              </div>
+          </div>    
         </div>
+
       </div>
     </div>
 

@@ -24,7 +24,7 @@
             background-repeat: no-repeat;
       }
   
-      form{
+      #placeNewOrder{
         background-color: rgba(245, 245, 245, 0.388);
         margin: auto;
         position: realtive;
@@ -45,11 +45,11 @@
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
       }
   
-      input#name{
+      input#order{
         margin-top: 20px;
       }
   
-      input#name,#email, #payment {
+      input#order,#email, #payment {
         float: center;
         margin-bottom: 20px;
         margin-right: 15px;
@@ -95,102 +95,290 @@
             </div>
     </nav>
   
-  
-      <form method="post" action="/placeNewOrder">
+      <form method="post" action="/placeNewOrder" id="placeNewOrder">
           <h1>
             <bold>Place new Order</bold>
           </h1>
   
-          <input id="name" type="text" name="name" placeholder="Name"><br>
-          <input id="email" type="number" name="quantity" placeholder="Quantity"><br>
-          <input id="payment" type="number" name="payment" placeholder="Total Payment" /><br>
+          <input id="order" type="text" name="order" placeholder="order"><br>
           <!-- Now this is the button which closes the popup-->
           <!-- <div class="panel-footer"> -->
             <button id="back" onclick="return goBack();">Back</button>
-            <button id="close" >submit</button>
+            <button id="search">Search</button>
       </form>
-  
+      <div class="container" id="results"></div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript" src="js/signup.js"></script>
   
     <script>
       $(document).ready(function () {
-          //select the POPUP FRAME and show it
-          $("#popup").hide().fadeIn(1000);
-  
-          $("#close").on("click", function (e) {
-              e.preventDefault();
-              $("#popup").fadeOut(1000);
-          });
+
+        $.get("/api/order").then(function (orderData) {
+          console.log(orderData, "Im from backend");
+          console.log("customer id: ", orderData.id);
+          console.log("pharmacy id: ", orderData.PharmacyId);
+        });
+
+        //select the POPUP FRAME and show it
+        $("#popup").hide().fadeIn(1000);
+
+        $("#close").on("click", function (e) {
+            e.preventDefault();
+            $("#popup").fadeOut(1000);
+        });
+        
       });
 
       function goBack(){
         window.history.back();
         return false;
       }
-  
       
-      // $("#button-addon2").on("click", function (event) {
-      //   event.preventDefault();
-      //   $("#card-body3").empty();
+      // Click on button to start API Call
+      $("#search").on("click", function (event) {
+        event.preventDefault();
+        $("#results").empty();
   
-      //   var searchInput = $("#user-input").val();
-      //   console.log(searchInput);
-      //   if (searchInput === "") {
-      //     console.log("input a field");
-      //     return;
-      //   } else {
-      //     var medSearch = {
-      //       "async": true,
-      //       "crossDomain": true,
-      //       "url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
-      //       // &id=359441
-      //       "method": "GET",
-      //       "headers": {
-      //         "x-rapidapi-host": "walgreens.p.rapidapi.com",
-      //         "x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
-      //       }
-      //     }
-  
-      //     $.ajax(medSearch).then(function (response) {
-      //       console.log(response);
+        var searchInput = $("#order").val();
+        console.log(searchInput);
+        if (searchInput === "") {
+          console.log("input a field");
+          return;
+        } else {
+          var medSearch = {
+            "async": true,
+            "crossDomain": true,
+            "url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
+            // &id=359441
+            "method": "GET",
+            "headers": {
+              "x-rapidapi-host": "walgreens.p.rapidapi.com",
+              "x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
+            }
+          }
+          // Response to append results
+          $.ajax(medSearch).then(function (response) {
+            console.log(response);
       
-      //       for (var i = 0; i < response.products.length; i++) {
-      //         var proId = response.products[i].productInfo.prodId;
-      //         // console.log("Product Id : ", proId);
-      //         var proName = response.products[i].productInfo.productDisplayName;
-      //         console.log("Product Name : ", proName);
-  
-      //         var proImglink = response.products[i].productInfo.imageUrl;
-  
-      //         var proImg = "https:" + proImglink;
-      //         // console.log("Product Img : ", proImg);
-  
-      //         var proPrice = response.products[i].productInfo.priceInfo.regularPriceHtml;
-      //         console.log("Product Price : ", proPrice);
+            for (var i = 0; i < response.products.length; i++) {
+              // Product ID
+              var proId = response.products[i].productInfo.prodId;
+
+              // Product Display Name
+              var proName = response.products[i].productInfo.productDisplayName;
+              // console.log("Product Name : ", proName);
               
-      //         var newDiv = $("<div>");
-      //         var imgDiv = $("<img src=" + proImg + ">")
+              // Product Img
+              var proImglink = response.products[i].productInfo.imageUrl;
+              var proImg = "https:" + proImglink;
+              var imgDiv = $("<img src=" + proImg + ">")
+              
+              // Product Price Html
+              var proPriceHtml = response.products[i].productInfo.priceInfo.regularPriceHtml;
+              // console.log("Product Price : ", proPrice);
+
+              // Product Price
+              var proPrice = response.products[i].productInfo.priceInfo.regularPrice;
+              
+              
+              // New Div
+              var newDiv = $("<div>");
   
-      //         if (proPrice === undefined){
-      //           var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
+              if (proPrice === undefined){
+                var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
   
-      //           newDiv.append(proName, imgDiv, proPriceMsg);
-      //           $("#card-body3").append(newDiv);
+                newDiv.append(proName, imgDiv, proPriceMsg);
+                $("#results").append(newDiv);
                 
-      //         } else {
-      //         var proPriceFinal = $("<div>Item Price: " + proPrice + "</div>");
+              } else {
+
+              var sqlId = $("<div id='item" + [i] + "' value='" + proId + "'>Product id: " + proId + "</div>");
+
+              var proPriceFinal = $("<div id='price" + [i] + "' value='" + proPrice + "'>Item Price: " + proPriceHtml + "</>");
+
+              var buyBtn = $('<button class="btn btn-warning" type="button" class="buybtn" id="buy' + [i] + '">Buy</button>');
+              var quantity =  $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+              newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
+              $("#results").append(newDiv);
+              };
+            }
+
+            // // WILL REVISIT FOR LOOP
+            // // Call once
+            // for(var i = 0; i < 5; i++){
+            //   // console.log(response);
+            //   $("'#buy' + [i]").on("click", function(){
               
-      //         var buyBtn = $('<button class="btn btn-warning" type="button" id="buy' + proId[i] + '">Buy</button>');
-      //         var quantity =  $('<form><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="exampleFormControlSelect1"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
-      //         newDiv.append(proName, imgDiv, proPriceFinal, quantity, buyBtn);
-      //         $("#card-body3").append(newDiv);
-      //         };
-      //       }
-      //     });
-      //   }
-      // });
-  
+            //   // var btn = $("#buy" + [i]);
+            //   // console.log(btn);
+
+            //   // quantity
+            //   var quantityResponse = $("#quantityBtn").val();
+            //   console.log(quantityResponse);
+            //   // price
+            //   // console.log(proPrice);
+            //   // item id
+            //   // console.log(proId);
+            // });
+            // }
+            
+            // Buy button 1 functionality
+            $("#buy0").on("click", function(){
+              
+              // var btn = $("#buy0");
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn0").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price0").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item0").attr('value');
+              console.log(sqlProId);
+
+              $.get("/api/order").then(function (orderData) {
+              console.log(orderData, "Im from backend");
+              console.log("customer id: ", orderData.id);
+              console.log("pharmacy id: ", orderData.PharmacyId);
+
+              // from API
+              // quantity
+              var sqlQuantity = $("#quantityBtn0").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price0").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item0").attr('value');
+              console.log("med id: ", sqlProId);
+
+              updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            
+            function updateOrder(medId, qty, medPrice, custId, pharmId) {
+                $.ajax({
+                  method: "post",
+                  url: "/api/order",
+                  data: {
+                    med_id: medId,
+                    category: "medicine",
+                    quantity: qty,
+                    med_price: medPrice,
+                    status: "order placed",
+                    CustomerId: custId,
+                    //DriverId: "",
+                    PharmacyId: pharmId
+                  }
+                })
+                  .then(function (data) {
+                    console.log("second data display", data);
+                    window.location.replace("/order");
+                    // If there's an error, handle it by throwing up a bootstrap alert
+                  })
+                  .catch(handleLoginErr);
+              }
+              function handleLoginErr(err) {
+                $("#alert .msg").text(err.responseJSON);
+                // $("#alert").fadeIn(500);
+              }
+
+            // $.post("/api/order").then(function (orderData) {
+              
+            // });
+
+            });
+
+             // Buy button 2 functionality
+            $("#buy1").on("click", function(){
+              
+              // var btn = "#buy1";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn1").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price1").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item1").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 3 functionality
+            $("#buy2").on("click", function(){
+              
+              // var btn = "#buy2";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn2").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price2").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item2").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 4 functionality
+            $("#buy3").on("click", function(){
+              
+              // var btn = "#buy3";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn3").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price3").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item3").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 5 functionality
+            $("#buy4").on("click", function(){
+              
+              // var btn = "#buy4";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn4").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price4").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item4").attr('value');
+              console.log(sqlProId);
+            });
+          })
+        };
+      });
+
       </script>
   </body>
   </html>
