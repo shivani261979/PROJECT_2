@@ -1,13 +1,13 @@
 //Creating Order model
 module.exports = function (sequelize, DataTypes) {
     var Order = sequelize.define("Order", {
-        // order_id: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     validate: {
-        //         min: 1
-        //     }
-        // },
+        order_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                min: 1
+            }
+        },
         med_id: {
             type: DataTypes.STRING,
             allowNull: false,

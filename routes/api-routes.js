@@ -85,14 +85,14 @@ module.exports = function(app) {
 
   app.post("/api/order",function(req,res){
     db.Order.create({
-      // order_id: req.body.order_id,
+      order_id: req.body.order_id,
       med_id: req.body.med_id,
       category: req.body.category,
       quantity: req.body.quantity,
       med_price: req.body.med_price,
       status: req.body.status,
       CustomerId: req.body.CustomerId,
-      //DriverId: req.body.DriverId,
+      DriverId: req.body.DriverId,
       PharmacyId: req.body.PharmacyId
       
 
@@ -102,35 +102,6 @@ module.exports = function(app) {
       res.send(dbPharma);
     });
   });
-
-  // Shivani's code - used by orderstatus.html
-  app.get("/api/order/getstatus",function(req,res){
-
-    console.log("in api/order/getstatus - req.url holds - ", req.url);
-    console.log("orderId - " + parseInt(req.query.orderId));
-
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // console.log("i m in post route");
-      db.Order.findOne({
-        where:{
-          id: parseInt(req.query.orderId)
-        }
-        // include:[db.Customer]
-      }).then(function(dbOrder){
-        console.log("dbORder holds- " , dbOrder);
-        // console.log(dbOrder.user);
-        res.json(dbOrder);
-      });
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-    }
-  });
-
-
-
   //Route for getting data
   app.get("/api/order/:customer_id",function(req,res){
     // console.log(req.body);
@@ -164,56 +135,26 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // // Route for getting some data about our user to be used client side
-  // app.get("/api/order", function(req, res) {
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-  //     // Otherwise send back the user's email and id
-  //     // Sending back a password, even a hashed password, isn't a good idea
-  //     res.json({
-  //       // order_id: req.user.order_id,
-  //       // med_id: req.user.med_id,
-  //       // category: req.user.category,
-  //       // quantity: req.user.quantity,
-  //       // med_price: req.user.med_price,
-  //       // status: req.user.status,
-  //       // CustomerId: req.user.CustomerId,
-  //       // DriverId: req.user.DriverId,
-  //       // PharmacyId: req.user.PharmacyId
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
-
-  // // New Route
-  // app.get("/api/order", function (req, res) {
-  //   if (!req.user) {
-  //     // The user is not logged in, send back an empty object
-  //     res.json({});
-  //   } else {
-  //     res.json({
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
-
-  // New route to associate to current customer
-  app.get("/api/order", function (req, res) {
+  // Route for getting some data about our user to be used client side
+  app.get("/api/order", function(req, res) {
     if (!req.user) {
+      // The user is not logged in, send back an empty object
       res.json({});
     } else {
-      // console.log("i m in post route");
-      db.Customer.findOne({
-        where: {
-          id: req.user.id
-        }
-      })
-        .then(function (dbCustomer) {
-          res.json(dbCustomer);
-        });
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        // order_id: req.user.order_id,
+        // med_id: req.user.med_id,
+        // category: req.user.category,
+        // quantity: req.user.quantity,
+        // med_price: req.user.med_price,
+        // status: req.user.status,
+        // CustomerId: req.user.CustomerId,
+        // DriverId: req.user.DriverId,
+        // PharmacyId: req.user.PharmacyId
+        id: req.user.id
+      });
     }
   });
-
 };

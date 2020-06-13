@@ -49,20 +49,6 @@ module.exports = function(app) {
     // }
     res.sendFile(path.join(__dirname, "../public/existingorder.html"));
   });
-
-    // Shivani's code - for serving orderstatus.html
-  app.get("/orderStatus", isAuthenticated , function(req, res) {
-    // If the user already has an account send them to the members page
-    // if (req.user) {
-    // }
-    res.sendFile(path.join(__dirname, "../public/orderstatus.html"));
-  });
-
-  app.get("/images/:imageFilename", function(req,res){
-
-    res.sendFile(path.join(__dirname, "../images/" + req.params.imageFilename));
-  })
-
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   // app.get("/members", isAuthenticated, function(req, res) {
