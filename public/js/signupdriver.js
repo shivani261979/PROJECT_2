@@ -10,13 +10,13 @@ $(document).ready(function () {
   var stateInput = $("input#inputState");
   var zipInput = $("input#inputZip");
   var phoneInput = $("input#inputPhone");
-  var creditInput = $("input#inputCredit");
-  var pharmaIdInput=$("input#inputPharma");
+  var vehicleInput = $("input#inputVehicle");
+  var licenseInput = $("input#inputlicense");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
     event.preventDefault();
-    alert("i m clicked from singup")
+    alert("i m clicked from driver singup")
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
@@ -27,17 +27,15 @@ $(document).ready(function () {
       state: stateInput.val().trim(),
       zipcode: zipInput.val().trim(),
       phone: phoneInput.val().trim(),
-      ccard: creditInput.val().trim(),
-      PharmacyId: pharmaIdInput.val().trim()
-
-
+      vehicle_plate: vehicleInput.val().trim(),
+      driver_license: licenseInput.val().trim()
     };
 
     if (!userData.email || !userData.password) {
       return;
     }
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.ccard, userData.PharmacyId);
+    signUpUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.vehicle_plate, userData.driver_license);
     emailInput.val("");
     passwordInput.val("");
     firstNameInput.val("");
@@ -47,15 +45,14 @@ $(document).ready(function () {
     stateInput.val("");
     zipInput.val("");
     phoneInput.val("");
-    creditInput.val("");
-    pharmaIdInput.val("");
-
+    vehicleInput.val("");
+    licenseInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
-  function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, credit, PharmacyId) {
-    $.post("/api/signup", {
+  function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, vehicle_plate, driver_license) {
+    $.post("/api/driver", {
       email: email,
       password: password,
       fname: firstName,
@@ -65,12 +62,12 @@ $(document).ready(function () {
       state: state,
       zipcode: zip,
       phone: phone,
-      ccard: credit,
-      PharmacyId: PharmacyId
+      vehicle_plate: vehicle_plate,
+      driver_license: driver_license
 
     })
       .then(function (data) {
-        window.location.replace("/order");
+        window.location.replace("/");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

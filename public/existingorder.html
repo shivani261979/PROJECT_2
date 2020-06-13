@@ -10,32 +10,65 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="../public/stylesheets/style.css">
-  <title>GetMed | Login</title>
+  <title>GetMed | Home</title>
   <style>
-    form.signup,
-    form.login {
-      margin-top: 50px;
-    }
-
     body {
       font-family: 'Noto Sans SC', sans-serif;
       /* background-color: rgba(255,255,255,0.1);
-    background-blend-mode: lighten; */
-      background-image: url(../images/medicine.jpg);
+            background-blend-mode: lighten; */
+      background-image: url(../images/hand.jpg);
       background-size: cover;
       background-repeat: no-repeat;
     }
 
-    .container {
-      width: 80%;
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
+    #order {
+      background-color: rgba(245, 245, 245, 0.7);
+      margin: auto;
+      position: relative;
+      width: auto;
+      height: auto;
+      font-family: Tahoma, Geneva, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      color: #09C;
+      text-decoration: none;
       border-radius: 10px;
-      -webkit-box-shadow: 0 0 10px #aaa;
-      box-shadow: 0 0 10px #aaa;
+      padding: 10px;
+      border: 1px solid #999;
+      border: inset 1px solid #333;
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+    }
+
+    input#name {
+      margin-top: 200px;
+    }
+
+    input#name,
+    #email,
+    #payment {
+      float: center;
+      margin-bottom: 20px;
+      margin-right: 15px;
+      clear: both;
+      width: 200px;
+      display: block;
+      border: 1px solid #999;
+      height: 20px;
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      padding: 2px;
+    }
+
+    .panel-footer {
+      float: right;
+    }
+
+    input {
+      margin: 15px;
     }
   </style>
 </head>
@@ -51,7 +84,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
         <button class="dropdown-item" type="button"><a href="/">Home</a></button>
-        <button class="dropdown-item" type="button"><a href="/signup">Sign Up</a></button>
+        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
         <button class="dropdown-item" type="button"><a href="/login">Login</a></button>
         <button class="dropdown-item" type="button"><a href="/order">Order</a></button>
         <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
@@ -59,31 +92,16 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Login Form</h2>
-        <form class="login">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
-          </div>
-          
-          <button type="submit" class="btn btn-default">Login</button>
-        </form>
-        <br />
-        <p>Or sign up <a href="/signup">here</a></p>
-      </div>
+  <div class="container bgcolor">
+    <div class="container">
+      <div class="row orderclass m-auto"></div>
     </div>
   </div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/existingorder.js"></script>
 </body>
 
 </html>

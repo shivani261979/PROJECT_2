@@ -1,6 +1,7 @@
 // Creating Pharmacy model
 module.exports = function (sequelize, DataTypes) {
     var Pharmacy = sequelize.define("Pharmacy", {
+
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -10,15 +11,22 @@ module.exports = function (sequelize, DataTypes) {
         },
         street: DataTypes.STRING,
         city: DataTypes.STRING,
-        state_abbr: DataTypes.STRING,
+        state: DataTypes.STRING,
         zipcode: DataTypes.STRING,
-        phone: DataTypes.STRING
+        phone: DataTypes.STRING,
+    }, {
+
+        // freezeTableName: true,
     });
-    Pharmacy.id = function (models) {
-        Pharmacy.hasMany(models.Customer, {});
-    };
-    Pharmacy.id = function (models) {
-        Pharmacy.hasMany(models.Order, {});
+    Pharmacy.associate = function (models) {
+        Pharmacy.hasMany(models.Customer, {
+            onDelete: "cascade"
+
+        });
+        Pharmacy.hasMany(models.Order, {
+            onDelete: "cascade"
+        });
+
     };
     return Pharmacy;
 };

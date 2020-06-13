@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="Description" content="Enter your description here" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<script src="https://code.jquery.com/jquery-3.5.1.js"
+		integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<title>Title</title>
+</head>
+
+<body>
+	<h1>looking for walgreens api</h1>
+	<div id="item"></div>
+	<script>
+		var userInput = "TYLENOL";
+		var medSearch = {
+
+			"async": true,
+			"crossDomain": true,
+			"url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${userInput}&p=1&id=359438&s=5`,
+			"method": "GET",
+			"headers": {
+				"x-rapidapi-host": "walgreens.p.rapidapi.com",
+				"x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
+			}
+		}
+
+		$.ajax(medSearch).done(function (response) {
+			console.log(response);
+			//we can put ten length
+			for (var i = 0; i < 5; i++) {
+				console.log("Product Id : ", response.products[i].productInfo.prodId);
+				var proId = response.products[i].productInfo.prodId;
+				console.log("Product Name : ", response.products[i].productInfo.productDisplayName);
+				var proName = response.products[i].productInfo.productDisplayName;
+				//console.log("For : ",response.products[i].productInfo.age[i].age_message);
+				console.log("Form : ", response.products[i].productInfo.form);
+				var proForm = response.products[i].productInfo.form;
+
+				console.log("Price : ", response.products[i].productInfo.priceInfo.regularPrice);
+				var proPrice = response.products[i].productInfo.priceInfo.regularPrice;
+				//creating new div
+				var newDiv = $("<div>");
+				newDiv.append(proId, proName, proForm, proPrice);
+				$("#item").append(newDiv);
+
+
+
+			}
+
+		});
+
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

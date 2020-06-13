@@ -1,0 +1,88 @@
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+#UserActions{
+  position: relative;
+}
+#UserActions label{
+  font-size: 20px;
+}
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    /* background-color: rgba(255,255,255,0.1);
+    background-blend-mode: lighten; */
+    background-image: url(../public/images/medicine.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+/* }
+.container{
+    width: 80%;
+    max-width: 800px;
+    margin: 10px auto;
+    text-align: center;
+    background-color: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 10px #aaa;
+        box-shadow: 0 0 10px #aaa; */
+}
+
+.form{
+  font-size: xx-large;
+  font-style: normal;
+
+}
+
+.card-body{
+  margin-top: 30px;
+  display: center;
+    margin: 30px 0px 30px 0px;
+    background-color: rgb(245, 245, 245);
+
+}
+.card-img{
+    border: solid 20px white;
+    height: 160px;
+}
+
+.navbar {
+margin: 10px 0;
+
+}
+.navbar-default {
+background-color: #fff;
+border-color: #fff;
+}
+.brand-name {
+font-family: 'Josefin Slab', serif;
+font-size: 47px;
+font-weight: bold;
+color: rgb(68, 68, 68);
+text-decoration: none;
+}
+
+.nav-container {
+padding-top: 8px;
+}
+
+.navbar-custom {
+font-size: 20px;
+background-color: #FFF;
+
+}
+
+.MyCard{
+    -webkit-box-shadow: 0 0 10px rgba(100,100,100,0.4);
+            box-shadow: 0 0 10px rgba(100,100,100,0.4);
+    margin: 25px;
+    transition: all .2s ease-in-out;
+    border-radius: 10px;
+}
+
+.MyCard:hover{
+    transform: scale(1.05);
+    -webkit-box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
+            box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
+}

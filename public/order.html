@@ -10,35 +10,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="../public/stylesheets/style.css">
-  <title>GetMed | Login</title>
-  <style>
-    form.signup,
-    form.login {
-      margin-top: 50px;
-    }
-
-    body {
-      font-family: 'Noto Sans SC', sans-serif;
-      /* background-color: rgba(255,255,255,0.1);
-    background-blend-mode: lighten; */
-      background-image: url(../images/medicine.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .container {
-      width: 80%;
-      max-width: 800px;
-      margin: 10px auto;
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 10px;
-      -webkit-box-shadow: 0 0 10px #aaa;
-      box-shadow: 0 0 10px #aaa;
-    }
-  </style>
+  <title>GetMed | Order</title>
 </head>
+​
 
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -51,7 +25,7 @@
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
         <button class="dropdown-item" type="button"><a href="/">Home</a></button>
-        <button class="dropdown-item" type="button"><a href="/signup">Sign Up</a></button>
+        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
         <button class="dropdown-item" type="button"><a href="/login">Login</a></button>
         <button class="dropdown-item" type="button"><a href="/order">Order</a></button>
         <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
@@ -59,31 +33,46 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Login Form</h2>
-        <form class="login">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="email-input" placeholder="Email">
+
+
+
+  <div class="row" style="text-align: center">
+    <div class="col-md-6 col-md-offset-3">
+      <h1> Tell us what you want to do ?</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="col-md-6">
+        <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
+          <div class="row no-gutters">
+            <div class="card-body">
+              <a href="/existingOrder"><img src="../images/existing.jpg" class="card-img" alt="..."></a>
+              <!-- <button onclick="location.href='existingOrder.html';"><h1>View Existing Order</h1></button> -->
+              <h1>View Existing Order</h1>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="password-input" placeholder="Password">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card text-center mb-3 MyCard" onclick="location.href='neworder.html';" style="cursor: pointer;">
+          <div class="row no-gutters">
+            <div class="card-body">
+              <img src="../images/scooter.jpg" class="card-img" alt="...">
+              <h1>Place New Order</h1>
+            </div>
           </div>
-          
-          <button type="submit" class="btn btn-default">Login</button>
-        </form>
-        <br />
-        <p>Or sign up <a href="/signup">here</a></p>
+        </div>
       </div>
     </div>
   </div>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="js/login.js"></script>
+
 </body>
 
 </html>

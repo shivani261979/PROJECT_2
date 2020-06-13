@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": "rootpass",
-    "database": "getmed_DB",
+    "database": "getmedb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "rootpass",
-    "database": "database_test",
+    "database": "getmedb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "rootpass",
-    "database": "database_production",
+    "database": "getmedb",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
