@@ -74,7 +74,7 @@ module.exports = function(app) {
 
   app.post("/api/order", function(req, res) {
     db.Order.create({
-      //order_id: req.body.order_id,
+    //  order_id: req.body.order_id,
       med_id: req.body.med_id,
       category: req.body.category,
       quantity: req.body.quantity,
