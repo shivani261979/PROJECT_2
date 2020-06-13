@@ -15,7 +15,6 @@ module.exports = function (sequelize, DataTypes) {
         zipcode: DataTypes.STRING,
         phone: DataTypes.STRING,
     }, {
-
         // freezeTableName: true,
     });
     Pharmacy.associate = function (models) {

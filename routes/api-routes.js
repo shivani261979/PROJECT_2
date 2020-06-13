@@ -121,16 +121,15 @@ module.exports = function (app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/order", function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      res.json({
-        id: req.user.id
-      });
-    }
-  });
+  // app.get("/api/order", function (req, res) {
+  //   if (!req.user) {
+  //     res.json({});
+  //   } else {
+  //     res.json({
+  //       id: req.user.id
+  //     });
+  //   }
+  // });
 
   app.get("/api/profile", function (req, res) {
     if (!req.user) {

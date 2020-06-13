@@ -51,7 +51,6 @@ $(document).ready(function () {
     if (!userData.email || !userData.password) {
       return;
     }
-
     updateUser(userData.email, userData.password, userData.fname, userData.lname, userData.street, userData.city, userData.state, userData.zipcode, userData.phone, userData.ccard, userData.PharmacyId);
     emailInput.val("");
     passwordInput.val("");
@@ -93,7 +92,6 @@ $(document).ready(function () {
       })
       .catch(handleLoginErr);
   }
-
   function handleLoginErr(err) {
     $("#alert .msg").text(err.responseJSON);
     // $("#alert").fadeIn(500);

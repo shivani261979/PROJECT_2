@@ -193,6 +193,7 @@
               var proPriceFinal = $("<div id='price" + [i] + "' value='" + proPrice + "'>Item Price: " + proPriceHtml + "</>");
 
               var buyBtn = $('<button class="btn btn-warning" type="button" class="buybtn" id="buy' + [i] + '">Buy</button>');
+<<<<<<< HEAD
               var quantity = $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
               newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
               $("#results").append(newDiv);
@@ -324,3 +325,196 @@
 </body>
 
 </html>
+=======
+              var quantity =  $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+              newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
+              $("#results").append(newDiv);
+              };
+            }
+
+            // // WILL REVISIT FOR LOOP
+            // // Call once
+            // for(var i = 0; i < 5; i++){
+            //   // console.log(response);
+            //   $("'#buy' + [i]").on("click", function(){
+              
+            //   // var btn = $("#buy" + [i]);
+            //   // console.log(btn);
+
+            //   // quantity
+            //   var quantityResponse = $("#quantityBtn").val();
+            //   console.log(quantityResponse);
+            //   // price
+            //   // console.log(proPrice);
+            //   // item id
+            //   // console.log(proId);
+            // });
+            // }
+            
+            // Buy button 1 functionality
+            $("#buy0").on("click", function(){
+              
+              // var btn = $("#buy0");
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn0").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price0").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item0").attr('value');
+              console.log(sqlProId);
+
+              $.get("/api/order").then(function (orderData) {
+              console.log(orderData, "Im from backend");
+              console.log("customer id: ", orderData.id);
+              console.log("pharmacy id: ", orderData.PharmacyId);
+
+              // from API
+              // quantity
+              var sqlQuantity = $("#quantityBtn0").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price0").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item0").attr('value');
+              console.log("med id: ", sqlProId);
+
+              updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            
+            function updateOrder(medId, qty, medPrice, custId, pharmId) {
+                $.ajax({
+                  method: "post",
+                  url: "/api/order",
+                  data: {
+                    med_id: medId,
+                    category: "medicine",
+                    quantity: qty,
+                    med_price: medPrice,
+                    status: "order placed",
+                    CustomerId: custId,
+                    //DriverId: "",
+                    PharmacyId: pharmId
+                  }
+                })
+                  .then(function (data) {
+                    console.log("second data display", data);
+                    window.location.replace("/order");
+                    // If there's an error, handle it by throwing up a bootstrap alert
+                  })
+                  .catch(handleLoginErr);
+              }
+              function handleLoginErr(err) {
+                $("#alert .msg").text(err.responseJSON);
+                // $("#alert").fadeIn(500);
+              }
+
+            // $.post("/api/order").then(function (orderData) {
+              
+            // });
+
+            });
+
+             // Buy button 2 functionality
+            $("#buy1").on("click", function(){
+              
+              // var btn = "#buy1";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn1").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price1").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item1").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 3 functionality
+            $("#buy2").on("click", function(){
+              
+              // var btn = "#buy2";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn2").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price2").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item2").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 4 functionality
+            $("#buy3").on("click", function(){
+              
+              // var btn = "#buy3";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn3").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price3").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item3").attr('value');
+              console.log(sqlProId);
+            });
+
+            // Buy button 5 functionality
+            $("#buy4").on("click", function(){
+              
+              // var btn = "#buy4";
+              // console.log("Button: " + btn);
+
+              // quantity
+              var sqlQuantity = $("#quantityBtn4").val();
+              console.log(sqlQuantity);
+              // price
+              var attrPrice = $("#price4").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log(sqlPrice);
+              // item id
+              var sqlProId = $("#item4").attr('value');
+              console.log(sqlProId);
+            });
+          })
+        };
+      });
+
+      </script>
+  </body>
+  </html>
+  
+  
+  
+  
+  
+	
+>>>>>>> master

@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     console.log("i m from existingorder.js");
     $.get("/api/order").then(function (orderData) {
         console.log(orderData);
@@ -62,7 +61,6 @@ $(document).ready(function () {
                     "</p>" +
                     "</div>"
                 );
-
             }
         });
     });
