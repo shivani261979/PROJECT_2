@@ -1,11 +1,19 @@
+<<<<<<< HEAD
+INSERT INTO getmedb.customer
+=======
 INSERT INTO getmed_db.customer
+>>>>>>> master
     (id, email, password, fname, lname, street, city, state, zipcode, phone, ccard, phid, phaccount)
 VALUES
     ('1', 'dj@gmail.com', '123456', 'deepali', 'jain', '299 demott', 'edison', 'NJ', '08873', '1234567890', '123567890', '01000', 'Wal123'),
     ('2', 'tb@gmail.com', '112233', 'tiya', 'abc', '90', 'somerset', 'NJ', '08817', '1234567', '12345678', '05248', 'Wal009'),
     ('3', 'suraj@gmail.com', '98765', 'suraj', 'grurung', '20 elizabeth', 'plainfield', 'NJ', '07890', '558898', '8989898', '06957', 'Wal667'),
     ('4', 'rb@gmail.com', '767678', 'rishi', 'lok', '8 hillcrest road', 'warren', 'NJ', '06540', '99899', '565656', '13706', 'Wal324')
+<<<<<<< HEAD
+INSERT INTO getmedb.pharmacies
+=======
 INSERT INTO getmed_db.pharmacy
+>>>>>>> master
     (id, name, street, city, state_abbr, zipcode, phone)
 VALUES
     ('06957', 'Walgreens', '476 W UNION AVE', 'Bound Brook', 'NJ', '08805', '732-805-4014'),

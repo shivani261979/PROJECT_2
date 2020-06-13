@@ -11,22 +11,21 @@ module.exports = function (sequelize, DataTypes) {
         },
         street: DataTypes.STRING,
         city: DataTypes.STRING,
-        state_abbr: DataTypes.STRING,
+        state: DataTypes.STRING,
         zipcode: DataTypes.STRING,
         phone: DataTypes.STRING,
     }, {
-       
         // freezeTableName: true,
     });
     Pharmacy.associate = function (models) {
         Pharmacy.hasMany(models.Customer, {
             onDelete: "cascade"
 
-    });
-    Pharmacy.hasMany(models.Order, {
-        onDelete: "cascade"
-    });
-  
+        });
+        Pharmacy.hasMany(models.Order, {
+            onDelete: "cascade"
+        });
+
     };
     return Pharmacy;
 };

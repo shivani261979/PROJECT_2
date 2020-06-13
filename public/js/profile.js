@@ -16,6 +16,8 @@ $(document).ready(function () {
     document.getElementById("inputPhone").value = result.phone;
     document.getElementById("inputCredit").value = result.ccard;
     document.getElementById("inputPharma").value = result.PharmacyId;
+
+
   });
   var updateId = $("#updateId");
   var emailInput = $("input#inputemails");
@@ -61,7 +63,10 @@ $(document).ready(function () {
     phoneInput.val("");
     creditInput.val("");
     pharmaIdInput.val("");
+
   });
+
+
   function updateUser(email, password, firstName, lastName, street, city, state, zip, phone, credit, PharmacyId) {
     $.ajax({
       method: "put",
@@ -92,3 +97,5 @@ $(document).ready(function () {
     // $("#alert").fadeIn(500);
   }
 });
+
+
