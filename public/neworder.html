@@ -1,202 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
 
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Place New Order</title>
-  
-  
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-      <link rel="stylesheet" href="../public/stylesheets/signup.css">
-      <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-  
-    <style>
-  
-      body {
-            font-family: 'Noto Sans SC', sans-serif;
-            /* background-color: rgba(255,255,255,0.1);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place New Order</title>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="../public/stylesheets/signup.css">
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      /* background-color: rgba(255,255,255,0.1);
             background-blend-mode: lighten; */
-            background-image: url(../images/shelf.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-      }
-  
-      #placeNewOrder{
-        background-color: rgba(245, 245, 245, 0.388);
-        margin: auto;
-        position: realtive;
-        width: 550px;
-        height: 450px;
-        font-family: Tahoma, Geneva, sans-serif;
-        font-size: 14px;
-        line-height: 20px;
-        font-weight: bold;
-        color: #09C;
-        text-decoration: none;
-        border-radius: 10px;
-        padding: 10px;
-        border: 1px solid #999;
-        border: inset 1px solid #333;
-        -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
-        -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
-      }
-  
-      input#order{
-        margin-top: 20px;
-      }
-  
-      input#order,#email, #payment {
-        float: center;
-        margin-bottom: 20px;
-        margin-right: 15px;
-        clear: both;
-        width: 200px;
-        display: block;
-        border: 1px solid #999;
-        height: 20px;
-        -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-        padding: 2px;
-      }
-  
-      input{
-        margin-top:20px;
-      }
-      .panel-footer{
-        float:right;
-      }
-    </style>
-  
-  </head>
-  <body>
-  
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <!-- <a class="navbar-brand" href="#">Ge/a> -->
-      <h2 class="navbar-brand brand-name">
-        <a href="signup.html">GetMed</a>
-      </h2>
-          <div class="btn-group dropleft">
-              <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
-              <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Menu
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                <button class="dropdown-item" type="button" onclick="location.href='home.html'">Home</button>
-                <button class="dropdown-item" type="button">Sign In</button>
-                <button class="dropdown-item" type="button">Features</button>
-                <button class="dropdown-item" type="button">Pricing</button>
-                <button class="dropdown-item" type="button">Contact Us</button>
-              </div>
-            </div>
-    </nav>
-  
-      <form method="post" action="/placeNewOrder" id="placeNewOrder">
-          <h1>
-            <bold>Place new Order</bold>
-          </h1>
-  
-          <input id="order" type="text" name="order" placeholder="order"><br>
-          <!-- Now this is the button which closes the popup-->
-          <!-- <div class="panel-footer"> -->
-            <button id="back" onclick="return goBack();">Back</button>
-            <button id="search">Search</button>
-      </form>
-      <div class="container" id="results"></div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript" src="js/signup.js"></script>
-  
-    <script>
-      $(document).ready(function () {
+      background-image: url(../images/shelf.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-        $.get("/api/order").then(function (orderData) {
-          console.log(orderData, "Im from backend");
-          console.log("customer id: ", orderData.id);
-          console.log("pharmacy id: ", orderData.PharmacyId);
-        });
+    #placeNewOrder {
+      background-color: rgba(245, 245, 245, 0.388);
+      margin: auto;
+      position: realtive;
+      width: 550px;
+      height: 450px;
+      font-family: Tahoma, Geneva, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: bold;
+      color: #09C;
+      text-decoration: none;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #999;
+      border: inset 1px solid #333;
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
+    }
 
-        //select the POPUP FRAME and show it
-        $("#popup").hide().fadeIn(1000);
+    input#order {
+      margin-top: 20px;
+    }
 
-        $("#close").on("click", function (e) {
-            e.preventDefault();
-            $("#popup").fadeOut(1000);
-        });
-        
+    input#order,
+    #email,
+    #payment {
+      float: center;
+      margin-bottom: 20px;
+      margin-right: 15px;
+      clear: both;
+      width: 200px;
+      display: block;
+      border: 1px solid #999;
+      height: 20px;
+      -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      padding: 2px;
+    }
+
+    input {
+      margin-top: 20px;
+    }
+
+    .panel-footer {
+      float: right;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <!-- <a class="navbar-brand" href="#">Ge/a> -->
+    <h2 class="navbar-brand brand-name">
+      <a href="signup.html">GetMed</a>
+    </h2>
+    <div class="btn-group dropleft">
+      <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
+      <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        Menu
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+        <button class="dropdown-item" type="button" onclick="location.href='home.html'">Home</button>
+        <button class="dropdown-item" type="button">Sign In</button>
+        <button class="dropdown-item" type="button">Features</button>
+        <button class="dropdown-item" type="button">Pricing</button>
+        <button class="dropdown-item" type="button">Contact Us</button>
+      </div>
+    </div>
+  </nav>
+
+  <form method="post" action="/placeNewOrder" id="placeNewOrder">
+    <h1>
+      <bold>Place new Order</bold>
+    </h1>
+
+    <input id="order" type="text" name="order" placeholder="order"><br>
+    <!-- Now this is the button which closes the popup-->
+    <!-- <div class="panel-footer"> -->
+    <button id="back" onclick="return goBack();">Back</button>
+    <button id="search">Search</button>
+  </form>
+  <div class="container" id="results"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="js/signup.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      //select the POPUP FRAME and show it
+      $("#popup").hide().fadeIn(1000);
+
+      $("#close").on("click", function (e) {
+        e.preventDefault();
+        $("#popup").fadeOut(1000);
       });
+    });
 
-      function goBack(){
-        window.history.back();
-        return false;
-      }
-      
-      // Click on button to start API Call
-      $("#search").on("click", function (event) {
-        event.preventDefault();
-        $("#results").empty();
-  
-        var searchInput = $("#order").val();
-        console.log(searchInput);
-        if (searchInput === "") {
-          console.log("input a field");
-          return;
-        } else {
-          var medSearch = {
-            "async": true,
-            "crossDomain": true,
-            "url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
-            // &id=359441
-            "method": "GET",
-            "headers": {
-              "x-rapidapi-host": "walgreens.p.rapidapi.com",
-              "x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
-            }
+    function goBack() {
+      window.history.back();
+      return false;
+    }
+
+    // Click on button to start API Call
+    $("#search").on("click", function (event) {
+      event.preventDefault();
+      $("#results").empty();
+
+      var searchInput = $("#order").val();
+      console.log(searchInput);
+      if (searchInput === "") {
+        console.log("input a field");
+        return;
+      } else {
+        var medSearch = {
+          "async": true,
+          "crossDomain": true,
+          "url": `https://walgreens.p.rapidapi.com/products/list?sort=Relevance&q=${searchInput}&p=1&id=359438&s=5`,
+          // &id=359441
+          "method": "GET",
+          "headers": {
+            "x-rapidapi-host": "walgreens.p.rapidapi.com",
+            "x-rapidapi-key": "c71f1adf39msh953354333a676acp1ecaeajsn4afba69d5159"
           }
-          // Response to append results
-          $.ajax(medSearch).then(function (response) {
-            console.log(response);
-      
-            for (var i = 0; i < response.products.length; i++) {
-              // Product ID
-              var proId = response.products[i].productInfo.prodId;
+        }
+        // Response to append results
+        $.ajax(medSearch).then(function (response) {
+          console.log(response);
 
-              // Product Display Name
-              var proName = response.products[i].productInfo.productDisplayName;
-              // console.log("Product Name : ", proName);
-              
-              // Product Img
-              var proImglink = response.products[i].productInfo.imageUrl;
-              var proImg = "https:" + proImglink;
-              var imgDiv = $("<img src=" + proImg + ">")
-              
-              // Product Price Html
-              var proPriceHtml = response.products[i].productInfo.priceInfo.regularPriceHtml;
-              // console.log("Product Price : ", proPrice);
+          for (var i = 0; i < response.products.length; i++) {
+            // Product ID
+            var proId = response.products[i].productInfo.prodId;
 
-              // Product Price
-              var proPrice = response.products[i].productInfo.priceInfo.regularPrice;
-              
-              
-              // New Div
-              var newDiv = $("<div>");
-  
-              if (proPrice === undefined){
-                var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
-  
-                newDiv.append(proName, imgDiv, proPriceMsg);
-                $("#results").append(newDiv);
-                
-              } else {
+            // Product Display Name
+            var proName = response.products[i].productInfo.productDisplayName;
+            // console.log("Product Name : ", proName);
+
+            // Product Img
+            var proImglink = response.products[i].productInfo.imageUrl;
+            var proImg = "https:" + proImglink;
+            var imgDiv = $("<img src=" + proImg + ">")
+
+            // Product Price Html
+            var proPriceHtml = response.products[i].productInfo.priceInfo.regularPriceHtml;
+            // console.log("Product Price : ", proPrice);
+
+            // Product Price
+            var proPrice = response.products[i].productInfo.priceInfo.regularPrice;
+
+
+            // New Div
+            var newDiv = $("<div>");
+
+            if (proPrice === undefined) {
+              var proPriceMsg = response.products[i].productInfo.priceInfo.messages.message;
+
+              newDiv.append(proName, imgDiv, proPriceMsg);
+              $("#results").append(newDiv);
+
+            } else {
 
               var sqlId = $("<div id='item" + [i] + "' value='" + proId + "'>Product id: " + proId + "</div>");
 
               var proPriceFinal = $("<div id='price" + [i] + "' value='" + proPrice + "'>Item Price: " + proPriceHtml + "</>");
 
               var buyBtn = $('<button class="btn btn-warning" type="button" class="buybtn" id="buy' + [i] + '">Buy</button>');
+<<<<<<< HEAD
+              var quantity = $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+              newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
+              $("#results").append(newDiv);
+            };
+          }
+
+          // // WILL REVISIT FOR LOOP
+          // // Call once
+          // for(var i = 0; i < 5; i++){
+          //   // console.log(response);
+          //   $("'#buy' + [i]").on("click", function(){
+
+          //   // var btn = $("#buy" + [i]);
+          //   // console.log(btn);
+
+          //   // quantity
+          //   var quantityResponse = $("#quantityBtn").val();
+          //   console.log(quantityResponse);
+          //   // price
+          //   // console.log(proPrice);
+          //   // item id
+          //   // console.log(proId);
+          // });
+          // }
+
+          // Buy button 1 functionality
+          $("#buy0").on("click", function () {
+
+            // var btn = $("#buy0");
+            // console.log("Button: " + btn);
+
+            // quantity
+            var sqlQuantity = $("#quantityBtn0").val();
+            console.log(sqlQuantity);
+            // price
+            var attrPrice = $("#price0").attr('value');
+            // console.log(attrPrice);
+            // drop "$" and float price for table
+            var sqlPrice = parseFloat(attrPrice.slice(1));
+            console.log(sqlPrice);
+            // item id
+            var sqlProId = $("#item0").attr('value');
+            console.log(sqlProId);
+          });
+
+          // Buy button 2 functionality
+          $("#buy1").on("click", function () {
+
+            // var btn = "#buy1";
+            // console.log("Button: " + btn);
+
+            // quantity
+            var sqlQuantity = $("#quantityBtn1").val();
+            console.log(sqlQuantity);
+            // price
+            var attrPrice = $("#price1").attr('value');
+            // console.log(attrPrice);
+            // drop "$" and float price for table
+            var sqlPrice = parseFloat(attrPrice.slice(1));
+            console.log(sqlPrice);
+            // item id
+            var sqlProId = $("#item1").attr('value');
+            console.log(sqlProId);
+          });
+
+          // Buy button 3 functionality
+          $("#buy2").on("click", function () {
+
+            // var btn = "#buy2";
+            // console.log("Button: " + btn);
+
+            // quantity
+            var sqlQuantity = $("#quantityBtn2").val();
+            console.log(sqlQuantity);
+            // price
+            var attrPrice = $("#price2").attr('value');
+            // console.log(attrPrice);
+            // drop "$" and float price for table
+            var sqlPrice = parseFloat(attrPrice.slice(1));
+            console.log(sqlPrice);
+            // item id
+            var sqlProId = $("#item2").attr('value');
+            console.log(sqlProId);
+          });
+
+          // Buy button 4 functionality
+          $("#buy3").on("click", function () {
+
+            // var btn = "#buy3";
+            // console.log("Button: " + btn);
+
+            // quantity
+            var sqlQuantity = $("#quantityBtn3").val();
+            console.log(sqlQuantity);
+            // price
+            var attrPrice = $("#price3").attr('value');
+            // console.log(attrPrice);
+            // drop "$" and float price for table
+            var sqlPrice = parseFloat(attrPrice.slice(1));
+            console.log(sqlPrice);
+            // item id
+            var sqlProId = $("#item3").attr('value');
+            console.log(sqlProId);
+          });
+
+          // Buy button 5 functionality
+          $("#buy4").on("click", function () {
+
+            // var btn = "#buy4";
+            // console.log("Button: " + btn);
+
+            // quantity
+            var sqlQuantity = $("#quantityBtn4").val();
+            console.log(sqlQuantity);
+            // price
+            var attrPrice = $("#price4").attr('value');
+            // console.log(attrPrice);
+            // drop "$" and float price for table
+            var sqlPrice = parseFloat(attrPrice.slice(1));
+            console.log(sqlPrice);
+            // item id
+            var sqlProId = $("#item4").attr('value');
+            console.log(sqlProId);
+          });
+        })
+      };
+    });
+  </script>
+</body>
+
+</html>
+=======
               var quantity =  $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
               newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
               $("#results").append(newDiv);
@@ -388,3 +517,4 @@
   
   
 	
+>>>>>>> master

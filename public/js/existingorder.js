@@ -14,11 +14,15 @@ $(document).ready(function () {
                 var quantity = myOrder[i].quantity;
                 var status = myOrder[i].status;
                 var updatedat = myOrder[i].updatedAt;
+
                 console.log(customerid, "this is the loop id number - ", i);
                 // console.log(medid, "this is the cusotmer id for checking")
                 //var newDiv = $("<div>");
+
                 // newDiv.append(customerid, category, createdat, medid, price, quantity, status, updatedat);
+
                 // $("#order").append(newDiv);
+
                 var orders = $(".orderclass");
                 orders.append(
                     "<div class=divclass id=order>" +
