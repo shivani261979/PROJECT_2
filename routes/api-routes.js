@@ -2,6 +2,7 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
+// Shivani's code for testing without authentication
 const denyUnauthorized = false;
 
 module.exports = function(app) {
@@ -132,9 +133,13 @@ module.exports = function(app) {
       res.json({});
     } else {
       // console.log("i m in post route");
-      db.Order.findOne({
+      db.Order.findAll({
         where: {
-          DriverId: null
+          DriverId: null,
+          CustomerId:req.user.id
+                  // // {
+                  //   $eq: null
+                  // }
         },
       }).then(function(dbOrder) {
         console.log("dbORder holds- ", dbOrder);
