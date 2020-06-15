@@ -6,13 +6,41 @@ module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), function(req, res) {
+  app.post("/api/login", passport.authenticate("client"), function(req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
       email: req.user.email,
       id: req.user.id,
     });
   });
+  
+  //for driver
+  app.post("/api/driverlogin", passport.authenticate("driver"), function(req, res) {
+    // Sending back a password, even a hashed password, isn't a good idea
+    console.log("i m from post route of driver login")
+    res.json({
+      email: req.user.email,
+      id: req.user.id,
+    });
+  });
+  //get request for driver id
+
+  app.get("/api/driverlogin", function(req, res) {
+    if (!req.user) {
+      res.json({});
+    } else {
+      // console.log("i m in post route");
+      db.Driver.findOne({
+        where: {
+          id: req.user.id,
+        },
+      }).then(function(dbDriver) {
+        res.json(dbDriver);
+      });
+    }
+  });
+
+
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
@@ -221,4 +249,142 @@ app.get("/api/order", function(req, res) {
     });
   }
 })
+//for driver home page
+
+app.get("/api/displayorder", function(req, res) {
+  if (!req.user) {
+    res.json({});
+  } else {
+    // console.log("i m in post route");
+    // db.Driver.findOne({
+    //   where: {
+    //     id:req.user.id,
+    //   }
+    // }) 
+    db.Order.findAll({
+      where: {
+        DriverId: null,
+      },
+      include:[db.Customer]
+    }).then(function(dbDriver) {
+      res.json(dbDriver);
+    });
+  }
+});
+
+// app.get("/api/getOrderId", function(req, res) {
+//   if (!req.user) {
+//     res.json({});
+//   } else {
+//     // console.log("i m in post route");
+//     // db.Driver.findOne({
+//     //   where: {
+//     //     id:req.user.id,
+//     //   }
+//     // }) 
+//     db.Order.findOne({
+//       where: {
+//         DriverId: req.user.id,
+//         status: req.body.status
+//       },
+//       include:[db.Customer]
+//     }).then(function(dbDriver) {
+//       res.json(dbDriver);
+//     });
+//   }
+// });
+
+
+//statusUpdate order from driver side
+
+app.put("/api/updateDriverOrder", function(req, res) {
+  console.log("from the api of backend", req.body);
+  if (!req.user) {
+    res.json({});
+  } else {
+    db.Order.update(
+      {
+        status: req.body.status,
+         DriverId: req.body.DriverId,
+         id: req.body.id
+      },
+      {
+        where: {
+          id: req.body.id
+        },
+      }
+    )
+      .then(function(dbStaus) {
+        res.json(dbStaus);
+        console.log(" from the order update from driverside", dbStaus);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  }
+});
+
+//track order from driverside(status changed after grabing)
+
+app.put("/api/updateOrderStatus", function(req, res) {
+  console.log("from the api delivery status");
+  
+  if (!req.user) {
+    res.json({});
+  } else {
+    db.Order.update(
+      {
+        status: req.body.status,
+        
+      
+      },
+      {
+        where: {
+          id: req.user.id,
+          // status: "driver assigned"
+        },
+      }
+    )
+      .then(function(dbStaus) {
+        res.json(dbStaus);
+        console.log(" from the order update from driverside", dbStaus);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  }
+});
+
+//for delivery status for picked Up
+// app.get("/api/pickedStatus", function(req, res) {
+//   if (!req.user) {
+//     res.json({});
+//   } else {
+//     // console.log("i m in post route");
+//     // db.Driver.findOne({
+//     //   where: {
+//     //     id:req.user.id,
+//     //   }
+//     // }) 
+//     console.log("order status from driver", req.body)
+//     db.Order.findOne({
+//       where: {
+//         status:"driver assigned",
+//       },
+     
+//     }).then(function(dbDriver) {
+//       res.json(dbDriver);
+//     });
+//   }
+// });
+
+
+
+
+
+
 };
