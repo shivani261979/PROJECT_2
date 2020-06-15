@@ -159,10 +159,10 @@
                 <div class="col-md-12 block">
                     <div class="wrapper-progressBar">
                         <ul class="progressBar" id="orderProgress">
-                            <li>Order Confirmed</li>
-                            <li>Order picked up</li>
-                            <li>Driver en-route</li>
-                            <li>Order Delivered</li>
+                            <li id="listOne">Customer Order</li>
+                            <li id="listTwo"> Picked Up From Pharmacy</li>
+                            <li id="listThree">On My Way</li>
+                            <li id="listFour">Order Delivered</li>
                         </ul>
                     </div>
                 </div>
@@ -175,8 +175,9 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/orderStatusDriver.js"></script>
 
-    <script>
+    <!-- <script>
 
         // pulling order id from query params 
         const urlParams = new URLSearchParams(window.location.search);
@@ -196,7 +197,7 @@
         function checkOrderStatus(){
 
             if(!orderId)
-                return alert("Please provide order Id in url query");
+                // return alert("Please provide order Id in url query");
 
             $.get('/api/order/getstatus', {'orderId':orderId}, function (data, textStatus, jqXHR) {
 
@@ -259,7 +260,7 @@
         }
 
 
-    </script>
+    </script> -->
 </body>
 
 </html>

@@ -26,13 +26,14 @@ $(document).ready(function () {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the order page
   function loginUser(email, password) {
+    console.log("i m from front end driver login")
     $.post("/api/driverlogin", {
       email: email,
       password: password
     })
       .then(function (data) {
         console.log("data from login", data);
-        window.location.replace("/");
+        window.location.replace("/driverWelcomePage");
         // If there's an error, log the error
       })
       .catch(function (err) {

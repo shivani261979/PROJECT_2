@@ -59,11 +59,37 @@ module.exports = function (app) {
   // app.get("/members", isAuthenticated, function(req, res) {
   //   res.sendFile(path.join(__dirname, "../public/members.html"));
   // });
-
+// ***************** path for driver*********************************
   app.get("/signupdriver", function (req, res) {
     if (req.user) {
-      res.redirect("/");
+      res.redirect("/driverWelcomePage");
     }
     res.sendFile(path.join(__dirname, "../public/signupdriver.html"));
   });
+
+  app.get("/driverlogin", function (req, res) {
+    if (req.user) {
+      res.redirect("/driverWelcomePage");
+    }
+    res.sendFile(path.join(__dirname, "../public/logindriver.html"));
+  });
+  
+  app.get("/driverHome", isAuthenticated , function(req, res) {
+  
+    res.sendFile(path.join(__dirname, "../public/driverHome.html"));
+  });
+
+   
+  app.get("/orderStatusDriver", isAuthenticated , function(req, res) {
+  
+    res.sendFile(path.join(__dirname, "../public/orderStatusDriver.html"));
+  });
+  
+  app.get("/driverWelcomePage", isAuthenticated , function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/driverWelcomePage.html"));
+  });
+
+
+
 };
+
