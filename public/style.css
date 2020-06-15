@@ -86,3 +86,10 @@ background-color: #FFF;
     -webkit-box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
             box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
 }
+
+#userGreeting{
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+  color: rgb(17, 131, 112);
+}

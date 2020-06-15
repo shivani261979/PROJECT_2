@@ -13,7 +13,7 @@
   <title>GetMed | Signup</title>
 </head>
 
-}
+
 </style>
 <title>profile update</title>
 </head>
@@ -22,14 +22,13 @@
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="#">GetMed</a>
     <div class="btn-group dropleft">
-      <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
       <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Menu
+        Customer
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
         <button class="dropdown-item" type="button"><a href="/">Home</a></button>
-        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
+        <button class="dropdown-item" type="button"><a href="/signup">Sign Up</a></button>
         <button class="dropdown-item" type="button"><a href="/login">Login</a></button>
         <button class="dropdown-item" type="button"><a href="/order">Order</a></button>
         <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
@@ -38,8 +37,7 @@
     </div>
   </nav>
 
-
-  <div class="container">
+  <div class="container mt-5">
     <form class="signup">
 
       <div class="form-row">
@@ -67,7 +65,7 @@
       </div>
       <div class="form-group">
         <label for="inputAddress">Street</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <input type="text" class="form-control" id="inputAddress" placeholder="">
       </div>
 
       <div class="form-row">
@@ -96,7 +94,11 @@
         </div>
         <div class="form-group col-md-4">
           <label for="inputCity">Pharmacy Id</label>
-          <input type="text" class="form-control" id="inputPharma">
+          <select type="text" class="form-control" id="inputPharma">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
         </div>
 
       </div>
@@ -104,7 +106,7 @@
       <button type="submit" class="btn btn-primary" id="updateId">SignUp</button>
     </form>
     <br />
-    <p>Or log in <a href="/login">here</a></p>
+    <p><a href="/login">Or log in here</a></p>
   </div>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script> -->
 

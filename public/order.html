@@ -34,15 +34,11 @@
     </div>
   </nav>
 
-
-
   <div class="row" style="text-align: center">
-    <div class="col-md-6 col-md-offset-3">
-      <h1> Tell us what you want to do ?</h1>
+    <div id="userGreeting" class="col-md-6 col-md-offset-3">
     </div>
   </div>
-
-      <div class="row justify-content-center">
+ <div class="row justify-content-center">
         <div class="col-12">
           <div class="col-md-4"> 
               <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
@@ -56,7 +52,7 @@
               </div>
           </div>
           <div class="col-md-4">
-            <div class="card text-center mb-3 MyCard" onclick="location.href='neworder.html';" style="cursor: pointer;">
+            <div class="card text-center mb-3 MyCard" onclick="location.href='/neworder';" style="cursor: pointer;">
                 <div class="row no-gutters">
                     <div class= "card-body"></div>
                         <img src="../images/scooter.jpg" class="card-img" alt="...">
@@ -79,15 +75,27 @@
           </div>    
         </div>
 
-      </div>
-    </div>
   </div>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
+  <script>
+    // Get User first name and append to the #userGreeting Div
+    $(document).ready(function(){
+      console.log("Welcome to Jurrasic Park");
+      getUser();
+      function getUser() {
+        $.get("/api/user/", function(data) {
+          // console.log(data);
+          console.log(data[0].fname);
+          var userGreeting = "Welcome " + data[0].fname;
+          $("#userGreeting").append(userGreeting);
+        });
+      };
+    });
+  </script>
 </body>
 
 </html>

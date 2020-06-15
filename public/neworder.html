@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Place New Order</title>
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" href="../public/stylesheets/signup.css">
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css"> -->
-
   <style>
+
     body {
       font-family: 'Noto Sans SC', sans-serif;
       /* background-color: rgba(255,255,255,0.1);
@@ -25,7 +17,7 @@
       background-repeat: no-repeat;
     }
 
-    #placeNewOrder {
+    #placeNewOrder{
       background-color: rgba(245, 245, 245, 0.388);
       margin: auto;
       position: realtive;
@@ -46,13 +38,11 @@
       box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
     }
 
-    input#order {
+    input#order{
       margin-top: 20px;
     }
 
-    input#order,
-    #email,
-    #payment {
+    input#order,#email, #payment {
       float: center;
       margin-bottom: 20px;
       margin-right: 15px;
@@ -67,32 +57,27 @@
       padding: 2px;
     }
 
-    input {
-      margin-top: 20px;
+    input{
+      margin-top:20px;
     }
-
-    .panel-footer {
-      float: right;
+    .panel-footer{
+      float:right;
     }
-
-    #results {
+    #results{
       padding: 10px;
       font-family: Verdana, Geneva, Tahoma, sans-serif;
       font-weight: bold;
       font-size: 18px;
     }
-
-    .proMessage {
+    .proMessage{
       color: #0099cc;
     }
-
-    #proMessageAPI {
+    #proMessageAPI{
       font-style: italic;
       font-weight: 500;
       margin: 10px 0px 10px 0px;
     }
-
-    .resultsLoop {
+    .resultsLoop{
       margin: 5px;
       padding: 20px;
       border-width: 0.5px;
@@ -102,7 +87,6 @@
   </style>
 
 </head>
-
 <body>
 
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
@@ -112,8 +96,7 @@
     </h2>
     <div class="btn-group dropleft">
       <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
-      <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
+      <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Menu
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
@@ -126,20 +109,20 @@
     </div>
   </nav>
 
-  <form method="post" action="/placeNewOrder" id="placeNewOrder">
-    <h1>
-      <bold>Place new Order</bold>
-    </h1>
+    <form method="post" action="/placeNewOrder" id="placeNewOrder" class="mt-5">
+      <h1>
+        <bold>Place new Order</bold>
+      </h1>
 
-    <input id="order" type="text" name="order" placeholder="order"><br>
-    <!-- Now this is the button which closes the popup-->
-    <!-- <div class="panel-footer"> -->
-    <button id="back" onclick="return goBack();">Back</button>
-    <button id="search">Search</button>
-  </form>
-  <div class="container" id="results"></div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/signup.js"></script>
+      <input id="order" type="text" name="order" placeholder="Order"><br>
+      <!-- Now this is the button which closes the popup-->
+      <!-- <div class="panel-footer"> -->
+      <button id="back" onclick="return goBack();">Back</button>
+      <button id="search">Search</button>
+    </form>
+    <div class="container" id="results"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
 
   <script>
     $(document).ready(function () {
@@ -156,11 +139,11 @@
       });
     });
 
-    function goBack() {
+    function goBack(){
       window.history.back();
       return false;
     };
-
+    
     // Click on button to start API Call
     $("#search").on("click", function (event) {
       event.preventDefault();
@@ -187,7 +170,7 @@
         $.ajax(medSearch).then(function (response) {
           console.log(response);
 
-          if (response.products === undefined) {
+          if(response.products === undefined){
             alert(response.messages[0].message + " Try again.");
 
           } else {
@@ -198,41 +181,51 @@
 
               // Product Display Name
               var proName = response.products[i].productInfo.productDisplayName;
-              // console.log("Product Name : ", proName);
-
+              
               // Product Img 
-              var proImglink = response.products[i].productInfo.imageUrl;
-              var proImg = "https:" + proImglink;
-              var imgDiv = $("<img src=" + proImg + ">")
+              var proImglink = "https:" + response.products[i].productInfo.imageUrl;
+              // var proImg = $("<img src=" + proImglink + ">");
+              var imgDiv = $("<div class='mt-2 mb-2'><img src='" + proImglink + "'></div>");
 
+              // Product Rating
+              var proRating = "Item rating: " + response.products[i].productInfo.reviewHoverMessage;
+              var proRatingGif = response.baseUrl + response.products[i].productInfo.reviewURL;
+              var ratingsGif = $("<img src=" + proRatingGif + " class='mb-3'>");
+              
               // Product Price Html
               var proPriceHtml = response.products[i].productInfo.priceInfo.regularPriceHtml;
               // console.log("Product Price : ", proPrice);
 
               // Product Price
               var proPrice = response.products[i].productInfo.priceInfo.regularPrice;
-
+              
               // New Div
               var newDiv = $("<div class='mt-5 mb-3 resultsLoop'>");
 
-              if (proPrice === undefined) {
+              if (proPrice === undefined){
                 var proPriceMsg = $("<div id='proMessageAPI'>Priced Per Store</div>");
-                var proMsg = $("<div class='mt-2 proMessage'>Sorry, this is unusual. GetMed is prevented from getting this med for you. Please visit your local store.</div>");
+                var proMsg = $("<div class='mt-2 proMessage'>Sorry, GetMed is unable to get this med for you. Please visit your local store for product availability and pricing info.</div>");
 
-                newDiv.append(proName, imgDiv, proPriceMsg, proMsg);
+                newDiv.append(nameDiv, imgDiv, proPriceMsg, proMsg);
                 $("#results").append(newDiv);
-
+                
               } else {
 
-                var sqlId = $("<div id='item" + [i] + "' value='" + proId + "' style='display:none'>Product id: " + proId + "</div>");
+              var sqlId = $("<div id='item" + [i] + "' value='" + proId + "' style='display:none'>Product id: " + proId + "</div>");
 
-                var proPriceFinal = $("<div id='price" + [i] + "' value='" + proPrice + "'>Item Price: " + proPriceHtml + "</>");
+              // var proNameValue = proName.replace(/ /g,"");
+              var proNameDivHide = $("<div id='name" + [i] + "' value='" + proName + "' style='display:none'>" + proName + "</div>");
+              // console.log("Product Name : ", proName);
 
-                var quantity = $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+              var ratingsDiv = $("<div id='ratings" + [i] + "' class='mt-3 mb-1'>" + proRating + " </div>");
 
-                var buyBtn = $('<button class="btn btn-info btn-lg btn-block" type="button" id="buy' + [i] + '">Buy</button>');
-                newDiv.append(proName, imgDiv, proPriceFinal, quantity, sqlId, buyBtn);
-                $("#results").append(newDiv);
+              var proPriceFinal = $("<div id='price" + [i] + "' value='" + proPrice + "'>Item Price: " + proPriceHtml + "</div>");
+
+              var quantity =  $('<form id="quantityResponse"><div class="form-group"><label for="exampleFormControlSelect1">Quantity</label><select class="form-control" id="quantityBtn' + [i] + '"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div></form>');
+
+              var buyBtn = $('<button class="btn btn-info btn-lg btn-block" type="button" id="buy' + [i] + '">Buy</button>');
+              newDiv.append(proName, proNameDivHide, imgDiv, ratingsDiv, ratingsGif, proPriceFinal, quantity, sqlId, buyBtn);
+              $("#results").append(newDiv);
               };
             }
 
@@ -241,7 +234,7 @@
             // for(var i = 0; i < 5; i++){
             //   // console.log(response);
             //   $("'#buy' + [i]").on("click", function(){
-
+              
             //   // var btn = $("#buy" + [i]);
             //   // console.log(btn);
 
@@ -254,108 +247,116 @@
             //   // console.log(proId);
             // });
             // }
-
+            
             // Buy button 1 functionality
-            $("#buy1").on("click", function () {
-
+            $("#buy1").on("click", function(){
+              
               $.get("/api/order").then(function (orderData) {
-                // console.log(orderData, "Im from backend");
-                // console.log("customer id: ", orderData.id);
-                // console.log("pharmacy id: ", orderData.PharmacyId);
+              // console.log(orderData, "Im from backend");
+              // console.log("customer id: ", orderData.id);
+              // console.log("pharmacy id: ", orderData.PharmacyId);
 
-                // From API
-                // quantity
-                var sqlQuantity = $("#quantityBtn1").val();
-                console.log("quantity: ", sqlQuantity);
-                // price
-                var attrPrice = $("#price1").attr('value');
-                // console.log(attrPrice);
-                // drop "$" and float price for table
-                var sqlPrice = parseFloat(attrPrice.slice(1));
-                console.log("price: ", sqlPrice);
-                // item id
-                var sqlProId = $("#item1").attr('value');
-                console.log("med id: ", sqlProId);
+              // From API
+              // quantity
+              var sqlQuantity = $("#quantityBtn1").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price1").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item1").attr('value');
+              console.log("med id: ", sqlProId);
+              // item name
+              var sqlProName = $("#name1").attr('value');
+              console.log("med name: ", sqlProName);
 
-                updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
-              });
-              // Post to database
-              function updateOrder(medId, qty, medPrice, custId, pharmId) {
-                $.ajax({
-                  method: "post",
-                  url: "/api/order",
-                  data: {
-                    med_id: medId,
-                    category: "medicine",
-                    quantity: qty,
-                    med_price: medPrice,
-                    status: "order placed",
-                    CustomerId: custId,
-                    //DriverId: "",
-                    PharmacyId: pharmId
-                  }
-                })
-                  // .then(function (data) {
-                  //   console.log("second data display", data);
-                  //   // window.location.replace("/order");
-                  //   // If there's an error, handle it by throwing up a bootstrap alert
-                  // })
-                  .catch(handleLoginErr);
+              updateOrder(sqlProId, sqlProName, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            // Post to database
+            function updateOrder(medId, medName, qty, medPrice, custId, pharmId) {
+              $.ajax({
+                method: "post",
+                url: "/api/order",
+                data: {
+                  med_id: medId,
+                  med_name: medName,
+                  category: "medicine",
+                  quantity: qty,
+                  med_price: medPrice,
+                  status: "order placed",
+                  CustomerId: custId,
+                  //DriverId: "",
+                  PharmacyId: pharmId
+                }
+              })
+                // .then(function (data) {
+                //   console.log("second data display", data);
+                //   // window.location.replace("/order");
+                //   // If there's an error, handle it by throwing up a bootstrap alert
+                // })
+                .catch(handleLoginErr);
               };
               function handleLoginErr(err) {
                 $("#alert .msg").text(err.responseJSON);
                 // $("#alert").fadeIn(500);
               };
 
-              // Post route
-              // $.post("/api/order").then(function (orderData) {
-
-              // });
+            // Post route
+            // $.post("/api/order").then(function (orderData) {
+              
+            // });
 
             });
 
-            // Buy button 2 functionality
-            $("#buy2").on("click", function () {
+              // Buy button 2 functionality
+            $("#buy2").on("click", function(){
 
               $.get("/api/order").then(function (orderData) {
-                // From API
-                // quantity
-                var sqlQuantity = $("#quantityBtn2").val();
-                console.log("quantity: ", sqlQuantity);
-                // price
-                var attrPrice = $("#price2").attr('value');
-                // console.log(attrPrice);
-                // drop "$" and float price for table
-                var sqlPrice = parseFloat(attrPrice.slice(1));
-                console.log("price: ", sqlPrice);
-                // item id
-                var sqlProId = $("#item2").attr('value');
-                console.log("med id: ", sqlProId);
+              // From API
+              // quantity
+              var sqlQuantity = $("#quantityBtn2").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price2").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item2").attr('value');
+              console.log("med id: ", sqlProId);
+              // item name
+              var sqlProName = $("#name2").attr('value');
+              console.log("med name: ", sqlProName);
 
-                updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
-              });
-              // Post to database
-              function updateOrder(medId, qty, medPrice, custId, pharmId) {
-                $.ajax({
-                  method: "post",
-                  url: "/api/order",
-                  data: {
-                    med_id: medId,
-                    category: "medicine",
-                    quantity: qty,
-                    med_price: medPrice,
-                    status: "order placed",
-                    CustomerId: custId,
-                    //DriverId: "",
-                    PharmacyId: pharmId
-                  }
-                })
-                  // .then(function (data) {
-                  //   console.log("second data display", data);
-                  //   // window.location.replace("/order");
-                  //   // If there's an error, handle it by throwing up a bootstrap alert
-                  // })
-                  .catch(handleLoginErr);
+              updateOrder(sqlProId, sqlProName, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            // Post to database
+            function updateOrder(medId, medName, qty, medPrice, custId, pharmId) {
+              $.ajax({
+                method: "post",
+                url: "/api/order",
+                data: {
+                  med_id: medId,
+                  med_name: medName,
+                  category: "medicine",
+                  quantity: qty,
+                  med_price: medPrice,
+                  status: "order placed",
+                  CustomerId: custId,
+                  //DriverId: "",
+                  PharmacyId: pharmId
+                }
+              })
+                // .then(function (data) {
+                //   console.log("second data display", data);
+                //   // window.location.replace("/order");
+                //   // If there's an error, handle it by throwing up a bootstrap alert
+                // })
+                .catch(handleLoginErr);
               };
               function handleLoginErr(err) {
                 $("#alert .msg").text(err.responseJSON);
@@ -364,47 +365,51 @@
             });
 
             // Buy button 3 functionality
-            $("#buy3").on("click", function () {
+            $("#buy3").on("click", function(){
 
               $.get("/api/order").then(function (orderData) {
-                // From API
-                // quantity
-                var sqlQuantity = $("#quantityBtn3").val();
-                console.log("quantity: ", sqlQuantity);
-                // price
-                var attrPrice = $("#price3").attr('value');
-                // console.log(attrPrice);
-                // drop "$" and float price for table
-                var sqlPrice = parseFloat(attrPrice.slice(1));
-                console.log("price: ", sqlPrice);
-                // item id
-                var sqlProId = $("#item3").attr('value');
-                console.log("med id: ", sqlProId);
+              // From API
+              // quantity
+              var sqlQuantity = $("#quantityBtn3").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price3").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item3").attr('value');
+              console.log("med id: ", sqlProId);
+              // item name
+              var sqlProName = $("#name3").attr('value');
+              console.log("med name: ", sqlProName);
 
-                updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
-              });
-              // Post to database
-              function updateOrder(medId, qty, medPrice, custId, pharmId) {
-                $.ajax({
-                  method: "post",
-                  url: "/api/order",
-                  data: {
-                    med_id: medId,
-                    category: "medicine",
-                    quantity: qty,
-                    med_price: medPrice,
-                    status: "order placed",
-                    CustomerId: custId,
-                    //DriverId: "",
-                    PharmacyId: pharmId
-                  }
-                })
-                  // .then(function (data) {
-                  //   console.log("second data display", data);
-                  //   // window.location.replace("/order");
-                  //   // If there's an error, handle it by throwing up a bootstrap alert
-                  // })
-                  .catch(handleLoginErr);
+              updateOrder(sqlProId, sqlProName, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            // Post to database
+            function updateOrder(medId, medName, qty, medPrice, custId, pharmId) {
+              $.ajax({
+                method: "post",
+                url: "/api/order",
+                data: {
+                  med_id: medId,
+                  med_name: medName,
+                  category: "medicine",
+                  quantity: qty,
+                  med_price: medPrice,
+                  status: "order placed",
+                  CustomerId: custId,
+                  //DriverId: "",
+                  PharmacyId: pharmId
+                }
+              })
+                // .then(function (data) {
+                //   console.log("second data display", data);
+                //   // window.location.replace("/order");
+                //   // If there's an error, handle it by throwing up a bootstrap alert
+                // })
+                .catch(handleLoginErr);
               };
               function handleLoginErr(err) {
                 $("#alert .msg").text(err.responseJSON);
@@ -413,47 +418,51 @@
             });
 
             // Buy button 4 functionality
-            $("#buy4").on("click", function () {
+            $("#buy4").on("click", function(){
 
               $.get("/api/order").then(function (orderData) {
-                // From API
-                // quantity
-                var sqlQuantity = $("#quantityBtn4").val();
-                console.log("quantity: ", sqlQuantity);
-                // price
-                var attrPrice = $("#price4").attr('value');
-                // console.log(attrPrice);
-                // drop "$" and float price for table
-                var sqlPrice = parseFloat(attrPrice.slice(1));
-                console.log("price: ", sqlPrice);
-                // item id
-                var sqlProId = $("#item4").attr('value');
-                console.log("med id: ", sqlProId);
+              // From API
+              // quantity
+              var sqlQuantity = $("#quantityBtn4").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price4").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item4").attr('value');
+              console.log("med id: ", sqlProId);
+              // item name
+              var sqlProName = $("#name4").attr('value');
+              console.log("med name: ", sqlProName);
 
-                updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
-              });
-              // Post to database
-              function updateOrder(medId, qty, medPrice, custId, pharmId) {
-                $.ajax({
-                  method: "post",
-                  url: "/api/order",
-                  data: {
-                    med_id: medId,
-                    category: "medicine",
-                    quantity: qty,
-                    med_price: medPrice,
-                    status: "order placed",
-                    CustomerId: custId,
-                    //DriverId: "",
-                    PharmacyId: pharmId
-                  }
-                })
-                  // .then(function (data) {
-                  //   console.log("second data display", data);
-                  //   // window.location.replace("/order");
-                  //   // If there's an error, handle it by throwing up a bootstrap alert
-                  // })
-                  .catch(handleLoginErr);
+              updateOrder(sqlProId, sqlProName, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            // Post to database
+            function updateOrder(medId, medName, qty, medPrice, custId, pharmId) {
+              $.ajax({
+                method: "post",
+                url: "/api/order",
+                data: {
+                  med_id: medId,
+                  med_name: medName,
+                  category: "medicine",
+                  quantity: qty,
+                  med_price: medPrice,
+                  status: "order placed",
+                  CustomerId: custId,
+                  //DriverId: "",
+                  PharmacyId: pharmId
+                }
+              })
+                // .then(function (data) {
+                //   console.log("second data display", data);
+                //   // window.location.replace("/order");
+                //   // If there's an error, handle it by throwing up a bootstrap alert
+                // })
+                .catch(handleLoginErr);
               };
               function handleLoginErr(err) {
                 $("#alert .msg").text(err.responseJSON);
@@ -462,47 +471,51 @@
             });
 
             // Buy button 5 functionality
-            $("#buy5").on("click", function () {
+            $("#buy5").on("click", function(){
 
               $.get("/api/order").then(function (orderData) {
-                // From API
-                // quantity
-                var sqlQuantity = $("#quantityBtn5").val();
-                console.log("quantity: ", sqlQuantity);
-                // price
-                var attrPrice = $("#price5").attr('value');
-                // console.log(attrPrice);
-                // drop "$" and float price for table
-                var sqlPrice = parseFloat(attrPrice.slice(1));
-                console.log("price: ", sqlPrice);
-                // item id
-                var sqlProId = $("#item5").attr('value');
-                console.log("med id: ", sqlProId);
+              // From API
+              // quantity
+              var sqlQuantity = $("#quantityBtn5").val();
+              console.log("quantity: ", sqlQuantity);
+              // price
+              var attrPrice = $("#price5").attr('value');
+              // console.log(attrPrice);
+              // drop "$" and float price for table
+              var sqlPrice = parseFloat(attrPrice.slice(1));
+              console.log("price: ", sqlPrice);
+              // item id
+              var sqlProId = $("#item5").attr('value');
+              console.log("med id: ", sqlProId);
+              // item name
+              var sqlProName = $("#name1").attr('value');
+              console.log("med name: ", sqlProName);
 
-                updateOrder(sqlProId, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
-              });
-              // Post to database
-              function updateOrder(medId, qty, medPrice, custId, pharmId) {
-                $.ajax({
-                  method: "post",
-                  url: "/api/order",
-                  data: {
-                    med_id: medId,
-                    category: "medicine",
-                    quantity: qty,
-                    med_price: medPrice,
-                    status: "order placed",
-                    CustomerId: custId,
-                    //DriverId: "",
-                    PharmacyId: pharmId
-                  }
-                })
-                  // .then(function (data) {
-                  //   console.log("second data display", data);
-                  //   // window.location.replace("/order");
-                  //   // If there's an error, handle it by throwing up a bootstrap alert
-                  // })
-                  .catch(handleLoginErr);
+              updateOrder(sqlProId, sqlProName, sqlQuantity, sqlPrice, orderData.id, orderData.PharmacyId)
+            });
+            // Post to database
+            function updateOrder(medId, medName, qty, medPrice, custId, pharmId) {
+              $.ajax({
+                method: "post",
+                url: "/api/order",
+                data: {
+                  med_id: medId,
+                  med_name: medName,
+                  category: "medicine",
+                  quantity: qty,
+                  med_price: medPrice,
+                  status: "order placed",
+                  CustomerId: custId,
+                  //DriverId: "",
+                  PharmacyId: pharmId
+                }
+              })
+                // .then(function (data) {
+                //   console.log("second data display", data);
+                //   // window.location.replace("/order");
+                //   // If there's an error, handle it by throwing up a bootstrap alert
+                // })
+                .catch(handleLoginErr);
               };
               function handleLoginErr(err) {
                 $("#alert .msg").text(err.responseJSON);
@@ -514,10 +527,9 @@
       };
     });
 
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>

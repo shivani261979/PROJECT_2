@@ -15,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
                 min: 1
             }
         },
+        med_name: DataTypes.STRING,
         category: DataTypes.STRING,
         quantity: DataTypes.INTEGER,
         med_price: DataTypes.DECIMAL(10, 2),
