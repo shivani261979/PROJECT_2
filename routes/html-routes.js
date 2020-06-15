@@ -67,7 +67,7 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/signupdriver.html"));
   });
 
-  app.get("/driverlogin", function (req, res) {
+  app.get("/logindriver", function (req, res) {
     if (req.user) {
       res.redirect("/driverWelcomePage");
     }
