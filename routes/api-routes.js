@@ -2,6 +2,8 @@
 var db = require("../models");
 var passport = require("../config/passport");
 
+const denyUnauthorized = false;
+
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -52,7 +54,15 @@ module.exports = function(app) {
       res.send(dbPharma);
     });
   });
-  //route for driver
+  // route for driver login
+  app.post("/api/driverlogin", passport.authenticate("local"), function(req, res) {
+    // Sending back a password, even a hashed password, isn't a good idea
+    res.json({
+      email: req.user.email,
+      id: req.user.id,
+    });
+  });
+  //route for new driver signup
   app.post("/api/driver", function(req, res) {
     db.Driver.create({
       email: req.body.email,
@@ -71,7 +81,6 @@ module.exports = function(app) {
     });
   });
   //route for order
-
   app.post("/api/order", function(req, res) {
     db.Order.create({
     //  order_id: req.body.order_id,
@@ -113,11 +122,55 @@ module.exports = function(app) {
     }
   });
 
+  // Shivani's code - used by driverexisting.html
+  app.get("/api/order/unassignedorders", function(req, res) {
+    console.log("in api/order/unassignedorders - req.url holds - ", req.url);
+
+    // if (!req.user) {
+    if (!req.user && denyUnauthorized) {
+        // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // console.log("i m in post route");
+      db.Order.findOne({
+        where: {
+          DriverId: null
+        },
+      }).then(function(dbOrder) {
+        console.log("dbORder holds- ", dbOrder);
+        // console.log(dbOrder.user);
+        res.json(dbOrder);
+      });
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+    }
+  });
+
+  // Shivani's code - used by driverexisting.html 
+  app.get("/api/order/driver/:driver_id", function(req, res) {
+    
+    // if (!req.user) {
+    if (!req.user && denyUnauthorized) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      console.log("retrieving past orders for driver with id - " + req.params.driver_id);
+      db.Order.findAll({
+        where: {
+          DriverId: req.params.driver_id
+        },
+        // include:[db.Customer]
+      }).then(function(dbOrder) {
+        // console.log(dbOrder);
+        // console.log(dbOrder.user);
+        res.json(dbOrder);
+      });
+    }
+  });
+  
   //Route for getting data
   app.get("/api/order/:customer_id", function(req, res) {
-    // console.log(req.body);
-    // console.log(res.json(req));
-    // var querry={};
+
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -141,17 +194,6 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
-
-  // Route for getting some data about our user to be used client side
-  // app.get("/api/order", function (req, res) {
-  //   if (!req.user) {
-  //     res.json({});
-  //   } else {
-  //     res.json({
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
 
   app.get("/api/profile", function(req, res) {
     if (!req.user) {
@@ -204,14 +246,11 @@ module.exports = function(app) {
         });
     }
   });
-
-
 // New route to associate to current customer
 app.get("/api/order", function(req, res) {
   if (!req.user) {
     res.json({});
   } else {
-    // console.log("i m in post route");
     db.Customer.findOne({
       where: {
         id: req.user.id,

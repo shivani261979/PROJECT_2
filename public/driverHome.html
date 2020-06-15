@@ -40,7 +40,6 @@
         box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8);
       } */
 
-      <style>
 body {font-family: "Lato", sans-serif;}
 
 .sidebar {
@@ -76,6 +75,44 @@ body {font-family: "Lato", sans-serif;}
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
 }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: auto;
+  margin-top: 35px;
+  text-align: center;
+  font-family: arial;
+  position: right;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.6;
+}
 </style>
 </head>
 <body>
@@ -86,6 +123,17 @@ body {font-family: "Lato", sans-serif;}
   <a href="#orders"><i class="fa fa-fw fa-user"></i> Orders </a>
   <a href="#contactUs"><i class="fa fa-fw fa-envelope"></i> Contact Us</a>
 </div>
-     
+
+
+<div class="card" >
+  <img src="../images/driverprofile.jpg" alt=" David" style="width:100%">
+  <h1>David Lyman</h1>
+  <p class="title"> GetMed Driver</p>
+  <p> Arizona University</p>
+  
+  <p><button>Contact</button></p>
+</div>
+
 </body>
-</html> 
+</html>
+
