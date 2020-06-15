@@ -70,7 +70,7 @@ $(document).ready(function () {
 
     })
       .then(function (data) {
-        window.location.replace("/order");
+        window.location.replace("/customerOrder");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

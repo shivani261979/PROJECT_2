@@ -9,19 +9,19 @@
   <meta name="Description" content="Enter your description here" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" href="../public/stylesheets/style.css">
-  <title>GetMed | Order</title>
+  <link rel="stylesheet" href="../stylesheets/customerOrder.css">
+  <title>Orders - Customer | GetMed</title>
+  
 </head>
 ​
 
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="#">GetMed</a>
+    <a class="navbar-brand"> <img src="/public/images/logo.png">GetMed</a>
     <div class="btn-group dropleft">
-      <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
       <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Menu
+        Customer
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
         <button class="dropdown-item" type="button"><a href="/">Home</a></button>
@@ -38,64 +38,51 @@
     <div id="userGreeting" class="col-md-6 col-md-offset-3">
     </div>
   </div>
- <div class="row justify-content-center">
-        <div class="col-12">
-          <div class="col-md-4"> 
-              <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
-                  <div class="row no-gutters">
-                      <div class= "card-body">
-                          <a href="/existingOrder"><img src="../images/existing.jpg"  class="card-img" alt="..."></a>
-                          <!-- <button onclick="location.href='existingOrder.html';"><h1>View Existing Order</h1></button> -->
-                          <h1>View Existing Order</h1>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card text-center mb-3 MyCard" onclick="location.href='/neworder';" style="cursor: pointer;">
-                <div class="row no-gutters">
-                    <div class= "card-body"></div>
-                        <img src="../images/scooter.jpg" class="card-img" alt="...">
-                        <h1>Place New Order</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card text-center mb-3 MyCard" onclick="location.href='orderstatus.html?orderId=8';" style="cursor: pointer; ">
-                  <div class="row no-gutters">
-                      <div class= "card-body"></div>
-                          <img src="" class="card-img" alt="...">
-                          <div style="position:absolute; top: 80px;margin:auto;font-size: 16px; text-align: center;">
-                            <input type="text" id="orderId" name="orderId" placeholder="Enter Order Id">
-                          </div>
-                          <h1>Track Order Id</h1>
-                      </div>
-                  </div>
-              </div>
-          </div>    
-        </div>
 
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+          <div class="card text-center mb-3 MyCard" ; style="cursor: pointer;">
+            <div class="row no-gutters">
+              <div class="card-body">
+                <a href="/existingOrder"><img src="../images/existing.jpg" class="card-img" alt="..."></a>
+                <!-- <button onclick="location.href='existingOrder.html';"><h1>View Existing Order</h1></button> -->
+                <h1>View Order History</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card text-center mb-3 MyCard" onclick="location.href='/neworder';" style="cursor: pointer;">
+            <div class="row no-gutters">
+              <div class="card-body">
+              <img src="../images/scooter.jpg" class="card-img" alt="...">
+            
+              <h1>Place New Order</h1>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card text-center mb-3 MyCard" onclick="location.href='/track';"
+            style="cursor: pointer; ">
+            <div class="row no-gutters text-center">
+              <div class="card-body">
+              <img src="../images/existing.jpg" class="card-img" alt="...">
+            <h1>Track Order Id</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
+  </div>
   </div>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script>
-    // Get User first name and append to the #userGreeting Div
-    $(document).ready(function(){
-      console.log("Welcome to Jurrasic Park");
-      getUser();
-      function getUser() {
-        $.get("/api/user/", function(data) {
-          // console.log(data);
-          console.log(data[0].fname);
-          var userGreeting = "Welcome " + data[0].fname;
-          $("#userGreeting").append(userGreeting);
-        });
-      };
-    });
-  </script>
+  <script type="text/javascript" src="js/customerOrder.js"></script>
 </body>
 
 </html>

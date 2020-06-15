@@ -1,0 +1,125 @@
+form.signup,
+form.login {
+margin-top: 50px;
+}
+#UserActions{
+position: relative;
+}
+#UserActions label{
+font-size: 20px;
+}
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    /* background-color: rgba(255,255,255,0.1);
+    background-blend-mode: lighten; */
+    background-image: url(/public/images/Kratom-and-Driving1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-body{
+margin-top: 50px;
+    margin: 30px 0px 30px 0px;
+    background-color: rgb(245, 245, 245);
+}
+.card-img{
+    border: solid 20px white;
+    height: 160px;
+}
+body {font-family: "Lato", sans-serif;}
+    .sidebar {
+    height: 100%;
+    width: 190px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(135, 223, 250);
+    overflow-x: hidden;
+    padding-top: 30px;
+}
+.sidebar a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 15px;
+color: black;
+display: block;
+}
+.sidebar a:hover {
+color: #F1F1F1;
+}
+.main {
+margin-left: 160px; /* Same as the width of the sidenav */
+padding: 0px 10px;
+}
+.orderclass{
+    position: relative;
+    display:none;
+    text-align: center;
+    padding-bottom: 30px;
+    border-radius: 10px;
+}
+.orderclass h1{
+    padding: 10px;
+}
+.orderclass h3{
+    margin-top: 20px;
+}
+table{
+    width:98%;
+    margin:auto;
+    text-align: center;
+}
+table tr {
+    height:25px;
+    font-size: 12px;
+    /* border: solid 1px gray; */
+}
+table tr th{
+    background-color: lightgray;
+}
+table th, td{
+    border: solid 1px gray;
+}
+@media screen and (max-height: 450px) {
+.sidebar {padding-top: 15px;}
+.sidebar a {font-size: 18px;}
+}
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+max-width: 300px;
+margin: auto;
+margin-top: 45px;
+text-align: center;
+font-family: arial;
+position: right;
+}
+.title {
+color: grey;
+font-size: 18px;
+}
+button {
+border: none;
+outline: 0;
+display: inline-block;
+padding: 8px;
+color: white;
+background-color: #000;
+text-align: center;
+cursor: pointer;
+width: 100%;
+font-size: 18px;
+}
+a {
+text-decoration: none;
+font-size: 22px;
+color: black;
+}
+button:hover, a:hover {
+opacity: 0.6;
+}
+#driverGreeting{
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: rgb(17, 131, 112);
+  }

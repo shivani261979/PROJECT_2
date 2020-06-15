@@ -98,10 +98,5 @@ $.get("/api/displayorder").then(function (orderDisplay) {
 
     };
   });
-
-
-
-
-
 });
 });

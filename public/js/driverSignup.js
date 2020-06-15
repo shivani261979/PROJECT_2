@@ -67,7 +67,7 @@ $(document).ready(function () {
 
     })
       .then(function (data) {
-        window.location.replace("/driverWelcomePage");
+        window.location.replace("/driverOrders");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

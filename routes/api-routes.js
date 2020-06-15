@@ -566,4 +566,30 @@ if (!req.user) {
   });
 }
 })
+ // New route to associate to current driver
+ app.get("/api/driverlogin", function(req, res) {
+  if (!req.user) {
+    res.json({});
+  } else {
+    // console.log("i m in post route");
+    db.Drivers.findOne({
+      where: {
+        id: req.user.id,
+      },
+    }).then(function(dbDrivers) {
+      res.json(dbDrivers);
+    });
+  };
+})
+  // Route to display driver name
+  app.get("/api/driverlogin", function(req, res) {
+    db.Drivers.findAll({
+      where: {
+        id: req.user.id,
+      },
+    }).then(function(dbDrivers) {
+      res.json(dbDrivers);
+    });
+  });
 };
+ 

@@ -33,7 +33,7 @@ $(document).ready(function () {
     })
       .then(function (data) {
         console.log("data from login", data);
-        window.location.replace("/driverWelcomePage");
+        window.location.replace("/driverOrders");
         // If there's an error, log the error
       })
       .catch(function (err) {

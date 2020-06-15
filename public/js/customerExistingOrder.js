@@ -25,7 +25,7 @@ $(document).ready(function () {
 
                 var orders = $(".orderclass");
                 orders.append(
-                    "<div class=divclass id=order>" +
+                    "<div class='divclass mt-3' id='order'>" +
                     "<p>" +
                     "Customer Id: " +
                     customerid +
@@ -51,11 +51,11 @@ $(document).ready(function () {
                     status +
                     "<br>" +
                     "<p>" +
-                    "Order ccreated at: " +
+                    "Order created at: " +
                     createdat +
                     "<br>" +
                     "</p>" +
-                    "Order uodated at: " +
+                    "Order updated at: " +
                     updatedat +
                     "<br>" +
                     "</p>" +
