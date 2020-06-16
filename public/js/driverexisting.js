@@ -1,6 +1,18 @@
 $(document).ready(function () {
     console.log("i m from existingorder.js");
 });
+   // Get Driver first name and append to the #driverGreeting Div
+   
+   getUser();
+   function getUser() {
+     $.get("/api/driverlogin", function(data) {
+       //console.log(data);
+       //console.log(data.fname);
+       var driverGreeting = "Welcome " + data.fname;
+       $("#driverGreeting").append(driverGreeting);
+     });
+   };
+
 function showDriverOrderHistory(driverId){
     console.log("Entered showDriverOrderHistory for driver id - " + driverId);
     $.get("/api/order/driver/"+driverId).then(function (arrOrders) {

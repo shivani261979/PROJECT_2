@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="Description" content="Enter your description here" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="../stylesheets/driverExisting.css">
+  <title>Orders - Driver | GetMed</title>
+
+</head>
+<body>
+    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="#">GetMed</a>
+        <div class="btn-group dropleft">
+          <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Driver
+          </button>
+          <div class="dropdown-menu" id="swapper-other1" aria-labelledby="dropdownMenu">
+            <button class="dropdown-item" type="button"><a href="/signupdriver">Sign Up</a></button>
+            <button class="dropdown-item" type="button"><a href="/logindriver">Login</a></button>
+            <button class="dropdown-item" type="button"><a href="/driverOrders">Orders</a></button>
+            <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
+            <button class="dropdown-item" type="button">Contact Us</button>
+          </div>
+        </div>
+      </nav>
+      <div class="row" style="text-align: center">
+        <div id="driverGreeting" class="col-md-6 col-md-offset-3">
+        </div>
+      </div>
+  </div>
+      <div class="row justify-content-center">
+          <div class="col-md-6">
+              <div class="card text-center mb-3 MyCard" onclick="showDriverOrderHistory(1);" style="cursor: pointer;">
+                  <div class="row no-gutters">
+                      <div class= "card-body">
+                          <img src="../images/Kratom-and-Driving1.jpg" class="card-img" alt="...">
+                          <h1>View Order History</h1>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="card text-center mb-3 MyCard" onclick="location.href='/driverSelect';" style="cursor: pointer;">
+            <div class="row no-gutters">
+                <div class= "card-body">
+                    <img src="../images/driver.jpg" class="card-img" alt="...">
+                    <h1>Deliver New Orders</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card text-center mb-3 MyCard" onclick="showUnassignedOrders();" style="cursor: pointer;">
+              <div class="row no-gutters">
+                  <div class= "card-body">
+                      <img src="../images/drugs.png" class="card-img" alt="...">
+                      <h1> Update Delivery Status</h1>
+                  </div>
+              </div>
+          </div>
+        </div>
+        </div>
+    </div>
+    <br/><br/>
+    <div class="orderclass" style="background-color: rgba(255,255,255,0.9); text-align: center;margin:auto;width:90%;max-width:1100px;">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/driverExisting.js"></script>
+</body>
+</html>

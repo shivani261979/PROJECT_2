@@ -9,7 +9,7 @@
   <meta name="Description" content="Enter your description here" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-  <link rel="stylesheet" href="../public/stylesheets/style.css">
+  <link rel="stylesheet" href="../stylesheets/driverSignup.css">
   <title>GetMed | Signup</title>
 </head>
 
@@ -17,23 +17,21 @@
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <a class="navbar-brand" href="/">GetMed</a>
     <div class="btn-group dropleft">
-      <input class="btn btn-white btn-outline-info" type="submit" value="Create Account">
       <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
-        Menu
+        Driver
       </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-        <button class="dropdown-item" type="button"><a href="/">Home</a></button>
-        <!-- <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button> -->
-        <button class="dropdown-item" type="button"><a href="/driverlogin">Login</a></button>
-        <!-- <button class="dropdown-item" type="button"><a href="/order">Order</a></button> -->
-        <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
-        <button class="dropdown-item" type="button">Contact Us</button>
-      </div>
+      <div class="dropdown-menu" id="swapper-other1" aria-labelledby="dropdownMenu">
+				<button class="dropdown-item" type="button"><a href="/signupdriver">Sign Up</a></button>
+				<button class="dropdown-item" type="button"><a href="/logindriver">Login</a></button>
+				<button class="dropdown-item" type="button"><a href="/driverOrders">Orders</a></button>
+				<button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
+				<button class="dropdown-item" type="button">Contact Us</button>
+			</div>
     </div>
   </nav>
 
-  <div class="container">
+  <div class="container mt-5">
     <form class="signup">
 
       <div class="form-row">
@@ -61,7 +59,7 @@
       </div>
       <div class="form-group">
         <label for="inputAddress">Street</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+        <input type="text" class="form-control" id="inputAddress" placeholder="">
       </div>
 
       <div class="form-row">
@@ -98,13 +96,13 @@
       <button type="submit" class="btn btn-primary" id="updateId">SignUp</button>
     </form>
     <br />
-    <p>Or log in <a href="/logindriver">here</a></p>
+    <p><a href="/logindriver"> Or log in here</a></p>
   </div>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script> -->
 
   <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/signupdriver.js"></script>
+  <script type="text/javascript" src="js/driverSignup.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>

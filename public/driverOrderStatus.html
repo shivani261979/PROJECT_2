@@ -8,119 +8,8 @@
     <meta name="Description" content="Enter your description here" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <title>GetMed | Track Your Order</title> <style>
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            /* background-color: rgba(255,255,255,0.1);
-            background-blend-mode: lighten; */
-            background-image: url(images/shelf.jpg);
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-
-        .progressContainer{
-            display:block;
-            width: 60%;
-            border-radius: 10px;
-            margin:auto;
-            text-align: center;
-            background-color: rgba(155, 227, 255, 0.747);
-            color: black;
-            padding: 20px;
-        }
-        .progressContainer h1{
-            color: black;
-        }
-
-        .panel-footer {
-            float: right;
-        }
-
-        .wrapper-progressBar {
-            width: 100%
-        }
-
-        /* .progressBar {  } */
-        .progressBar li {
-            list-style-type: none;
-            font-size: 16px;
-            float: left;
-            width: 25%;
-            position: relative;
-            text-align: center;
-            color: black;
-        }
-
-        .progressBar li:before {
-            content: " ";
-            line-height: 30px;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            border: 1px solid #ddd;
-            display: block;
-            text-align: center;
-            margin: 0 auto 10px;
-            background-color: white
-        }
-
-        .progressBar li:after {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            background-color: #ddd;
-            top: 15px;
-            left: -50%;
-            z-index: -1;
-        }
-
-        .progressBar li:first-child:after {
-            content: none;
-        }
-
-        .progressBar li.completed {
-            color: black;
-        }
-        .progressBar li.completed:before {
-            /* border-color: rgba(30, 143, 255, 0.3);
-            background-color: rgba(30, 143, 255, 0.3) */
-            border-color: lightgreen;
-            background-color: lime;
-        }
-        .progressBar li.completed:after {
-            border-color: lightgreen;
-            background-color: dodgerblue;
-        }
-        .progressBar li.active {
-            color: black;
-            height: 50px;
-        }
-        .progressBar li.active:before {
-            border-color: lightgreen;
-            background-color: lightgreen;
-            /* border-color: orange;
-            background-color: orange; */
-            -webkit-animation: BlinkItem 1s infinite;  /* Safari 4+ */
-            -moz-animation: BlinkItem 1s infinite;  /* Fx 5+ */
-            -o-animation: BlinkItem 1s infinite;  /* Opera 12+ */
-            animation: BlinkItem 1s infinite;  /* IE 10+, Fx 29+ */
-        }
-        .progressBar .active:after {
-            background-color: dodgerblue;
-        }
-
-        @keyframes BlinkItem {
-        0%, 49% {
-            background-color: lightgreen;
-        }
-        50%, 100% {
-            background-color: white;
-        }
-    }
-
-    </style>
+    <link rel="stylesheet" href="../stylesheets/driverOrderStatus.css">
+    <title>Update Order - Driver | GetMed</title>
 
 </head>
 
@@ -130,19 +19,18 @@
         <div class="btn-group dropleft">
          <button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            Menu
+            Driver
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-            <button class="dropdown-item" type="button"><a href="/">Home</a></button>
-            <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
-            <button class="dropdown-item" type="button"><a href="/driverWelcomePage">My Page</a></button>
-            <button class="dropdown-item" type="button"><a href="/orderStatusDriver">Your Delivery Status</a></button>
+          <div class="dropdown-menu" id="swapper-other1" aria-labelledby="dropdownMenu">
+            <button class="dropdown-item" type="button"><a href="/signupdriver">Sign Up</a></button>
+            <button class="dropdown-item" type="button"><a href="/logindriver">Login</a></button>
+            <button class="dropdown-item" type="button"><a href="/driverOrders">Orders</a></button>
             <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
             <button class="dropdown-item" type="button">Contact Us</button>
-          </div>
+        </div>
         </div>
       </nav>
-    <div class="progressContainer">
+    <div class="progressContainer mt-5">
         <div class="orderStatus">
             <h1>
                 Track your order ID : <bold><span id="orderId"></span></bold>
@@ -167,96 +55,10 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/orderStatusDriver.js"></script>
-
-    <!-- <script>
-
-        // pulling order id from query params 
-        const urlParams = new URLSearchParams(window.location.search);
-        const orderId = urlParams.get('orderId');
-
-        const orderStatus = [ 'Order Confirmed', 'Order Picked up', 'Driver en-route', 'Order Delivered' ];
-
-        $(document).ready(function () {
-
-                // updates orderId in title.
-            document.getElementById("orderId").innerHTML = orderId;
-
-            setTimeout(checkOrderStatus, 1000); // run after 1 second.
-            setInterval(checkOrderStatus, 15000);   // then check every 15 seconds
-        });
-
-        function checkOrderStatus(){
-
-            if(!orderId)
-                // return alert("Please provide order Id in url query");
-
-            $.get('/api/order/getstatus', {'orderId':orderId}, function (data, textStatus, jqXHR) {
-
-                if( data && data.hasOwnProperty("status") ){
-
-                    console.log("Will update status of order");
-                    updateOrderStatus( data.status.toLowerCase() );
-                } else{
-                    console.log("Skip status update. data holds - " , data);
-                }
-
-            });
-        }
-
-        function updateOrderStatus(status){
-
-            console.log("entered updateOrderStatus with status as - " + status);
-
-            let items = $('#orderProgress li');
-
-            console.log("Before reset, li items holds - ", items);
-
-            let foundAtPos = 0;
-            for(let x=0; x < orderStatus.length; x++){
-
-                if(orderStatus[x].toLowerCase() == status){
-                    foundAtPos = x;
-                    break;
-                }
-            }
-            console.log("Order status found at li position - " + foundAtPos);
-
-            resetStatus(items);
-
-            console.log("After reset li items holds - ", items);
-
-                // update UI with order status
-            for(let x=0; x < items.length; x++){
-
-                if(foundAtPos > x){
-                    $('#orderProgress li').eq(x).addClass("completed");
-                    // $(items[x]).addClass("completed");
-                    console.log("setting item as completed - " , $('#orderProgress li').eq(x));
-                } else if(foundAtPos === x){
-                    $('#orderProgress li').eq(x).addClass("active");
-                    // $(items[x]).addClass("active");
-                    console.log("setting item as active - " , $('#orderProgress li').eq(x));
-                }
-            }
-
-            console.log("After setting status li items - ", items);
-        }
-
-        function resetStatus(items){
-
-            for(let x=0;x < items.length; x++){
-                console.log("Resetting item - ", $('#orderProgress li').eq(x));
-                $('#orderProgress li').eq(x).removeClass('active completed');
-            }
-        }
-
-
-    </script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
- 
+  <script type="text/javascript" src="js/orderStatusDriver.js"></script>
 </body>
 
 </html>

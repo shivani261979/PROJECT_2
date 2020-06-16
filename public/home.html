@@ -9,7 +9,7 @@
 	<meta name="Description" content="Enter your description here" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-	<link rel="stylesheet" href="../public/stylesheets/style.css">
+	<link rel="stylesheet" href="../stylesheets/style.css">
 	<title>Home - GetMed</title>
 </head>
 ​
@@ -18,7 +18,6 @@
 	<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
 		<a class="navbar-brand" href="#">GetMed</a>
 		<div class="btn-group dropleft">
-		<button class="btn btn-white btn-outline-info"><a href="javascript:SwapDivsWithClick('dropdownMenu1','dropdownMenu2')"> Switch Account Type</a></button>
 			<button class="btn btn-white dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
 				aria-haspopup="true" aria-expanded="false">
 				Customer
@@ -38,11 +37,12 @@
 			<div class="dropdown-menu" id="swapper-other1" aria-labelledby="dropdownMenu">
 				<button class="dropdown-item" type="button"><a href="/signupdriver">Sign Up</a></button>
 				<button class="dropdown-item" type="button"><a href="/logindriver">Login</a></button>
-				<button class="dropdown-item" type="button"><a href="/order">Orders</a></button>
+				<button class="dropdown-item" type="button"><a href="/driverOrders">Orders</a></button>
 				<button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
 				<button class="dropdown-item" type="button">Contact Us</button>
 			</div>
 		</div>
+		<button class="btn btn-white btn-outline-info"><a href="javascript:SwapDivsWithClick('dropdownMenu1','dropdownMenu2')"> Switch Account Type</a></button>
 		</div>
 	</nav>
 	<div class="jumbotron" style="background-color: #ffffff;">
@@ -129,18 +129,18 @@
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-sm-4 text-center services-col"><img src="../public/images/drugs.png" alt="Landing">
+				<div class="col-sm-4 text-center services-col"><img src="../images/drugs.png" alt="Landing">
 					<h5>FIND YOUR MEDICATION</h5>
 					<p>We have the best prices for many generic medications. Simply place your order that matches your
 						prescription.</p>
 				</div>
-				<div class="col-sm-4 text-center services-col"><img src="../public/images/medical.png" alt="Landing">
+				<div class="col-sm-4 text-center services-col"><img src="../images/medical.png" alt="Landing">
 					<h5>TRANSFER YOUR RX</h5>
 					<p>Have your doctor send in your prescriptions electronically to GetMed
 						or by fax.</p>
 				</div>
 				<div class="col-sm-4 text-center services-col"><img class="relax-deliver"
-						src="../public/images/delivery.png" alt="Landing">
+						src="../images/delivery.png" alt="Landing">
 					<h5>RELAX WHILE WE DELIVER</h5>
 					<p>We will deliver your medications to the comfort of your home. No more long waits on the pharmacy
 						line.</p>
@@ -187,7 +187,7 @@
 				</div>
 				<div class="col-lg-2 d-none d-lg-flex flex-column justify-content-between">
 					<div class="row">
-						<div class="col"><img class="footer-logo" src="../public/images/doctor.png">
+						<div class="col"><img class="footer-logo" src="../images/doctor.png">
 						</div>
 					</div>
 				</div>
@@ -199,27 +199,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 		</script>
-<script type="text/javascript">
-	function SwapDivsWithClick(div1,div2)
-	{
-	   d1 = document.getElementById(div1);
-	   d2 = document.getElementById(div2);
-	   if( d2.style.display == "none" )
-	   {
-		  d1.style.display = "none";
-		  d2.style.display = "block";
-	   }
-	   else
-	   {
-		  d1.style.display = "block";
-		  d2.style.display = "none";
-	   }
-	}
-	window.onload = function() {
-  document.getElementById('dropdownMenu2').style.display = 'none';
-};
-	</script>
+<script type="text/javascript" src="js/home.js"></script>
+
 </body>
 ​
-
 </html>
