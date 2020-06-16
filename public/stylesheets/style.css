@@ -51,11 +51,15 @@ a{
   color: black;
 }
 a:hover{
-  color: rgb(219, 112, 94);
+  color:  rgb(248, 179, 29);
   text-decoration: none;
 }
 #copyright{
   /* margin: 10px; */
   color: rgb(97, 97, 97);
   padding: 25px;
+}
+#jumboText p a{
+  font-size: 25px;
+  color: rgb(248, 179, 29);
 }
