@@ -37,7 +37,7 @@ body {font-family: "Lato", sans-serif;}
     overflow-x: hidden;
     padding-top: 30px;
 }
-.sidebar a {
+/* .sidebar a {
 padding: 6px 8px 6px 16px;
 text-decoration: none;
 font-size: 15px;
@@ -46,7 +46,7 @@ display: block;
 }
 .sidebar a:hover {
 color: #F1F1F1;
-}
+} */
 .main {
 margin-left: 160px; /* Same as the width of the sidenav */
 padding: 0px 10px;
@@ -93,10 +93,10 @@ text-align: center;
 font-family: arial;
 position: right;
 }
-.title {
+/* .title {
 color: grey;
 font-size: 18px;
-}
+} */
 button {
 border: none;
 outline: 0;
@@ -109,15 +109,14 @@ cursor: pointer;
 width: 100%;
 font-size: 18px;
 }
-a {
-text-decoration: none;
-font-size: 22px;
-color: black;
-}
+
 button:hover, a:hover {
 opacity: 0.6;
 }
 #driverGreeting{
+    padding-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
     font-size: 34px;
     font-weight: bold;

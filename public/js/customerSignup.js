@@ -11,12 +11,11 @@ $(document).ready(function () {
   var zipInput = $("input#inputZip");
   var phoneInput = $("input#inputPhone");
   var creditInput = $("input#inputCredit");
-  var pharmaIdInput=$("input#inputPharma");
+  var pharmaIdInput = $("#inputPharma");
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
     event.preventDefault();
-    alert("i m clicked from singup")
     var userData = {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim(),
@@ -28,9 +27,8 @@ $(document).ready(function () {
       zipcode: zipInput.val().trim(),
       phone: phoneInput.val().trim(),
       ccard: creditInput.val().trim(),
-      PharmacyId: pharmaIdInput.val().trim()
-
-
+      PharmacyId: pharmaIdInput.val().trim(),
+    
     };
 
     if (!userData.email || !userData.password) {
@@ -51,7 +49,7 @@ $(document).ready(function () {
     pharmaIdInput.val("");
 
   });
-
+console.log(pharmaIdInput)
   // Does a post to the signup route. If successful, we are redirected to the members page
   // Otherwise we log any errors
   function signUpUser(email, password, firstName, lastName, street, city, state, zip, phone, credit, PharmacyId) {
@@ -70,7 +68,7 @@ $(document).ready(function () {
 
     })
       .then(function (data) {
-        window.location.replace("/customerOrder");
+        window.location.replace("/order");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);

@@ -7,10 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/customerNewOrder.css">
-
 </head>
 <body>
-
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <!-- <a class="navbar-brand" href="#">Ge/a> -->
     <h2 class="navbar-brand brand-name">
@@ -21,26 +19,25 @@
        Customer
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-        <button class="dropdown-item" type="button" onclick="location.href='home.html'">Home</button>
-        <button class="dropdown-item" type="button">Sign In</button>
-        <button class="dropdown-item" type="button">Features</button>
-        <button class="dropdown-item" type="button">Pricing</button>
+        <button class="dropdown-item" type="button"><a href="/">Home</a></button>
+        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
+        <button class="dropdown-item" type="button"><a href="/order">Orders</a></button>
         <button class="dropdown-item" type="button">Contact Us</button>
+        <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
       </div>
     </div>
   </nav>
-
     <form method="post" action="/placeNewOrder" id="placeNewOrder" class="mt-5">
       <h1>
         <bold>Place new Order</bold>
       </h1>
-
       <input id="order" type="text" name="order" placeholder="Order"><br>
       <!-- Now this is the button which closes the popup-->
       <!-- <div class="panel-footer"> -->
       <button id="back" onclick="return goBack();">Back</button>
       <button id="search">Search</button>
     </form>
+    <div class="StatusMessage"></div>
     <div class="container" id="results"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
