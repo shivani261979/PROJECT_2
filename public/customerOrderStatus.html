@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +10,6 @@
   <link rel="stylesheet" type="text/css" href="../stylesheets/customerOrderStatus.css" />
   <title>Track Orders - Customer | GetMed</title>
 </head>
-
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <!-- <a class="navbar-brand" href="#">Ge/a> -->
@@ -24,17 +22,14 @@
         Customer
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-        <button class="dropdown-item" type="button" onclick="location.href='home.html'">
-          Home
-        </button>
-        <button class="dropdown-item" type="button">Sign In</button>
-        <button class="dropdown-item" type="button">Features</button>
-        <button class="dropdown-item" type="button">Pricing</button>
+        <button class="dropdown-item" type="button"><a href="/">Home</a></button>
+        <button class="dropdown-item" type="button"><a href="/profile">Profile</a></button>
+        <button class="dropdown-item" type="button"><a href="/order">Account</a></button>
         <button class="dropdown-item" type="button">Contact Us</button>
+        <button class="dropdown-item" type="button"><a href="/logout">Logout</a></button>
       </div>
     </div>
   </nav>
-
   <div class="progressContainer mt-5">
     <div class="orderStatus">
       <h1>
@@ -44,9 +39,9 @@
         <div class="col-md-12 block">
           <div class="wrapper-progressBar">
             <ul class="progressBar" id="orderProgress">
-              <li id="listOne">Customer Order</li>
-              <li id="listTwo">Picked Up From Pharmacy</li>
-              <li id="listThree">On My Way</li>
+              <li id="listOne">Order Confirmed</li>
+              <li id="listTwo">Order Picked up</li>
+              <li id="listThree">Driver en-route</li>
               <li id="listFour">Order Delivered</li>
             </ul>
           </div>
@@ -54,12 +49,10 @@
       </div>
     </div>
   </div>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/orderStatusDriver.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/customerOrderStatus.js"></script>
 </body>
-
 </html>

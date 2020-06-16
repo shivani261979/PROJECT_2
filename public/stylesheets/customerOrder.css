@@ -15,6 +15,7 @@ body {
     background-image: url(../images/medicine.jpg);
     background-size: cover;
     background-repeat: no-repeat;
+    padding-bottom:50px;
 }
 .container{
   width: 80%;
@@ -61,10 +62,42 @@ padding-top: 8px;
 font-size: 20px;
 background-color: #FFF;
 }
-
 #userGreeting{
   text-align: center;
   font-size: 34px;
   font-weight: bold;
   color: rgb(17, 131, 112);
+}
+.MyCard{
+  -webkit-box-shadow: 0 0 10px rgba(100,100,100,0.4);
+          box-shadow: 0 0 10px rgba(100,100,100,0.4);
+  margin: 25px;
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+}
+.MyCard:hover{
+  transform: scale(1.05);
+  -webkit-box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
+          box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
+}
+.orderclass{
+  padding: 25px 40px;
+  display:none;
+}
+.orderclass table{
+  width: 98%;
+  margin:auto;
+}
+.orderclass table, tr, td, th {
+  border: solid 1px gray;
+}
+tr.clickable-row{ cursor: pointer;}
+tr.clickable-row:hover { background-color: skyblue;}
+#userGreeting{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 34px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
 }

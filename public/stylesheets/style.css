@@ -1,95 +1,61 @@
-
-form.signup,
-form.login {
-  margin-top: 50px;
+h1{
+  color: #27cfe9;
 }
-#UserActions{
-  position: relative;
+#jumboText{
+  margin-right: 3em;
+  margin-left: 2em;
 }
-#UserActions label{
-  font-size: 20px;
+#jumboText p{
+  font-size: 25px;
 }
-body {
-    font-family: 'Noto Sans SC', sans-serif;
-    /* background-color: rgba(255,255,255,0.1);
-    background-blend-mode: lighten; */
-    background-image: url(../public/images/medicine.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-/* }
-.container{
-    width: 80%;
-    max-width: 800px;
-    margin: 10px auto;
-    text-align: center;
-    background-color: rgba(255,255,255,0.7);
-    padding: 20px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0 0 10px #aaa;
-        box-shadow: 0 0 10px #aaa; */
+#jumboText p:nth-child(2){
+  margin-top: 1em;
 }
-
-.form{
-  font-size: xx-large;
-  font-style: normal;
-
+#jumboText p:nth-child(3){
+  margin-left: 5em;
 }
-
-.card-body{
-  margin-top: 30px;
-  display: center;
-    margin: 30px 0px 30px 0px;
-    background-color: rgb(245, 245, 245);
-
+#jumboText p:nth-child(4){
+  margin-left: 10em;
 }
-.card-img{
-    border: solid 20px white;
-    height: 160px;
+#jumboText p:nth-child(5){
+  margin-left: 15em;
 }
-
-.navbar {
-margin: 10px 0;
-
+#jumboImg{
+  margin-right: 2em;
+  margin-left: 5em;
 }
-.navbar-default {
-background-color: #fff;
-border-color: #fff;
+#containerBody{
+  background-color: #f6faff;
+  padding: 15px;
 }
-.brand-name {
-font-family: 'Josefin Slab', serif;
-font-size: 47px;
-font-weight: bold;
-color: rgb(68, 68, 68);
-text-decoration: none;
+h2{
+  color: rgb(219, 112, 94);
 }
-
-.nav-container {
-padding-top: 8px;
+.card{
+  border: none;
+  background-color: rgb(243, 220, 204);
 }
-
-.navbar-custom {
-font-size: 20px;
-background-color: #FFF;
-
-}
-
-.MyCard{
-    -webkit-box-shadow: 0 0 10px rgba(100,100,100,0.4);
-            box-shadow: 0 0 10px rgba(100,100,100,0.4);
-    margin: 25px;
-    transition: all .2s ease-in-out;
-    border-radius: 10px;
-}
-
-.MyCard:hover{
-    transform: scale(1.05);
-    -webkit-box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
-            box-shadow: 0 0 20px rgba(58, 23, 255, 0.8);
-}
-
-#userGreeting{
-  text-align: center;
-  font-size: 34px;
+.footer p{
+  color: #0c5460;
   font-weight: bold;
-  color: rgb(17, 131, 112);
+  font-size: large;
+}
+ul{
+  padding-left: 0px;
+}
+li{
+  list-style: none;
+  padding: 2px;
+}
+a{
+  color: black;
+}
+a:hover{
+  color: rgb(219, 112, 94);
+  text-decoration: none;
+}
+#copyright{
+  /* margin: 10px; */
+  color: rgb(97, 97, 97);
+  padding: 25px;
 }

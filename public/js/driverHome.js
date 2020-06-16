@@ -11,6 +11,7 @@ $.get("/api/displayorder").then(function (orderDisplay) {
   console.log(orderDisplay);
   console.log(orderDisplay[0].id);
   // var driverId=o
+  localStorage.setItem('pid',orderDisplay[0].id);
   for (var i = 0; i < orderDisplay.length; i++) {
     var fname = orderDisplay[i].Customer.fname;
     var lname = orderDisplay[i].Customer.lname;
@@ -21,6 +22,7 @@ $.get("/api/displayorder").then(function (orderDisplay) {
     var quantity = orderDisplay[i].quantity;
     var status = orderDisplay[i].status
     var medid = orderDisplay[i].med_id;
+    var medname = orderDisplay[i].med_name;
     var medprice = orderDisplay[i].med_price;
     var createdat = orderDisplay[i].Customer.createdAt;
 
@@ -41,6 +43,10 @@ $.get("/api/displayorder").then(function (orderDisplay) {
       "<p>" +
       "Medicine Id: " +
       medid +
+      "</p>" +
+      "<p>" +
+      "Medicine Name: " +
+      medname +
       "</p>" +
       "<p>" +
       "Price: " +

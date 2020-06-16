@@ -41,7 +41,6 @@ module.exports = function(app) {
   });
 
 
-
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -117,11 +116,10 @@ module.exports = function(app) {
     });
   });
 
-  // Shivani's code - used by orderstatus.html
-  app.get("/api/order/getstatus", function(req, res) {
+   // Shivani's code - used by orderstatus.html
+   app.get("/api/order/getstatus", function(req, res) {
     console.log("in api/order/getstatus - req.url holds - ", req.url);
     console.log("orderId - " + parseInt(req.query.orderId));
-
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -170,17 +168,6 @@ module.exports = function(app) {
     req.logout();
     res.redirect("/");
   });
-
-  // Route for getting some data about our user to be used client side
-  // app.get("/api/order", function (req, res) {
-  //   if (!req.user) {
-  //     res.json({});
-  //   } else {
-  //     res.json({
-  //       id: req.user.id
-  //     });
-  //   }
-  // });
 
   app.get("/api/profile", function(req, res) {
     if (!req.user) {
@@ -329,52 +316,38 @@ app.put("/api/updateDriverOrder", function(req, res) {
 
 //track order from driverside(status changed after grabing)
 
-app.put("/api/updateOrderStatus", function(req, res) {
-  console.log("from the api delivery status");
+// app.put("/api/updateOrderStatus", function(req, res) {
+//   console.log("from the api delivery status");
   
-  if (!req.user) {
-    res.json({});
-  } else {
-    db.Order.update(
-      {
-        status: req.body.status,
+//   if (!req.user) {
+//     res.json({});
+//   } else {
+//     db.Order.update(
+//       {
+//         status: req.body.status,
         
       
-      },
-      {
-        where: {
-          id: req.user.id,
-          // status: "driver assigned"
-        },
-      }
-    )
-      .then(function(dbStaus) {
-        res.json(dbStaus);
-        console.log(" from the order update from driverside", dbStaus);
-      })
-      .catch(function(err) {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  }
-});
+//       },
+//       {
+//         where: {
+//           id: req.user.id,
+//           // status: "driver assigned"
+//         },
+//       }
+//     )
+//       .then(function(dbStaus) {
+//         res.json(dbStaus);
+//         console.log(" from the order update from driverside", dbStaus);
+//       })
+//       .catch(function(err) {
+//         // Whenever a validation or flag fails, an error is thrown
+//         // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+//         res.json(err);
+//       });
+//   }
+// });
 
- // New route to associate to current customer
- app.get("/api/order", function(req, res) {
-  if (!req.user) {
-    res.json({});
-  } else {
-    // console.log("i m in post route");
-    db.Customer.findOne({
-      where: {
-        id: req.user.id,
-      },
-    }).then(function(dbCustomer) {
-      res.json(dbCustomer);
-    });
-  };
-})
+
   // Route to display user name
   app.get("/api/user/", function(req, res) {
     db.Customer.findAll({
@@ -409,29 +382,6 @@ app.put("/api/updateOrderStatus", function(req, res) {
 // });
 
 
-// Shivani's code - used by orderstatus.html
-app.get("/api/order/getstatus", function(req, res) {
-  console.log("in api/order/getstatus - req.url holds - ", req.url);
-  console.log("orderId - " + parseInt(req.query.orderId));
-  if (!req.user) {
-    // The user is not logged in, send back an empty object
-    res.json({});
-  } else {
-    // console.log("i m in post route");
-    db.Order.findOne({
-      where: {
-        id: parseInt(req.query.orderId),
-      },
-      // include:[db.Customer]
-    }).then(function(dbOrder) {
-      console.log("dbORder holds- ", dbOrder);
-      // console.log(dbOrder.user);
-      res.json(dbOrder);
-    });
-    // Otherwise send back the user's email and id
-    // Sending back a password, even a hashed password, isn't a good idea
-  }
-});
 // Shivani's code - used by driverexisting.html
 app.get("/api/order/unassignedorders", function(req, res) {
   console.log("in api/order/unassignedorders - req.url holds - ", req.url);
@@ -497,75 +447,8 @@ app.get("/api/order/:customer_id", function(req, res) {
     });
   }
 });
-// Route for logging user out
-app.get("/logout", function(req, res) {
-  req.logout();
-  res.redirect("/");
-});
-app.get("/api/profile", function(req, res) {
-  if (!req.user) {
-    res.json({});
-  } else {
-    // console.log("i m in post route");
-    db.Customer.findOne({
-      where: {
-        id: req.user.id,
-      },
-    }).then(function(dbCustomer) {
-      res.json(dbCustomer);
-    });
-  }
-});
-app.put("/api/update", function(req, res) {
-  // Add code here to update a post using the values in req.body, where the id is equal to
-  // req.body.id and return the result to the user using res.json
-  if (!req.user) {
-    res.json({});
-  } else {
-    db.Customer.update(
-      {
-        email: req.body.email,
-        password: req.body.password,
-        fname: req.body.fname,
-        lname: req.body.lname,
-        street: req.body.street,
-        city: req.body.city,
-        state: req.body.state,
-        zipcode: req.body.zipcode,
-        phone: req.body.phone,
-        ccard: req.body.ccard,
-        PharmacyId: req.body.PharmacyId,
-      },
-      {
-        where: {
-          id: req.user.id,
-        },
-      }
-    )
-      .then(function(dbPost) {
-        res.json(dbPost);
-      })
-      .catch(function(err) {
-        // Whenever a validation or flag fails, an error is thrown
-        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
-        res.json(err);
-      });
-  }
-});
-// New route to associate to current customer
-app.get("/api/order", function(req, res) {
-if (!req.user) {
-  res.json({});
-} else {
-  db.Customer.findOne({
-    where: {
-      id: req.user.id,
-    },
-  }).then(function(dbCustomer) {
-    res.json(dbCustomer);
-  });
-}
-})
+
+
  // New route to associate to current driver
  app.get("/api/driverlogin", function(req, res) {
   if (!req.user) {
@@ -591,5 +474,37 @@ if (!req.user) {
       res.json(dbDrivers);
     });
   });
+
+  //track order from driverside(status changed after grabing)
+// *****************************for order staus***********
+app.put("/api/updateOrderStatus", function(req, res) {
+  console.log("from the api delivery status");
+  if (!req.user) {
+    res.json({});
+  } else {
+    db.Order.update(
+      {
+        status: req.body.status,
+        DriverId: req.body.DriverId,
+      },
+      {
+        where: {
+          // DriverId: req.body.DriverId
+          id: req.body.id
+        },
+      }
+    )
+      .then(function(dbStaus) {
+        res.json(dbStaus);
+        console.log(" from the order update from driverside", dbStaus);
+      })
+      .catch(function(err) {
+        // Whenever a validation or flag fails, an error is thrown
+        // We can "catch" the error to prevent it from being "thrown", which could crash our node app
+        res.json(err);
+      });
+  }
+});
+
 };
  
