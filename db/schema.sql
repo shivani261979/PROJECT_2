@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS getmedb;
-
 CREATE database getmedb;
-
 USE getmedb;
 CREATE TABLE pharmacy (
 id INT NOT NULL AUTO_INCREMENT,
@@ -13,7 +11,6 @@ zipcode VARCHAR(5) NOT NULL,
 phone VARCHAR(10) NOT NULL,
 PRIMARY KEY (id)
 );
-
 USE getmedb;
 CREATE TABLE driver (
 id INT NOT NULL AUTO_INCREMENT,
@@ -28,7 +25,6 @@ vehicle_num VARCHAR(10) NOT NULL,
 driver_License VARCHAR(10) NOT NULL,,
 PRIMARY KEY (id)
 );
-
 USE getmedb;
 CREATE TABLE customer (
 id INT NOT NULL AUTO_INCREMENT,
@@ -46,7 +42,6 @@ phaccount VARCHAR(10),
 PRIMARY KEY (id),
 FOREIGN KEY (pharm_id) REFERENCES pharmacy(id)
 );
-
 USE getmedb;
 CREATE TABLE order (
 order_id INT NOT NULL AUTO_INCREMENT,
@@ -65,6 +60,5 @@ FOREIGN KEY (cust_id REFERENCES customer(id),
 FOREIGN KEY (driver_id) REFERENCES driver(id),
 FOREIGN KEY (pharm_id) REFERENCES pharmacy(id)
 );
-
 USE getmedb;
 Select * from customers;
